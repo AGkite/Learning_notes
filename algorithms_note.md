@@ -115,8 +115,8 @@ int a[101],n;//定义全局变量，这两个变量需要在子函数中使用
 void quicksort(int left,int right)
 {
     int i,j,t,temp;
-    if(left>right)
-    {return 0;}
+    if(left>right)//作用：当数列中的temp为最小数时触发
+    {return;}
     temp=a[left];//temp中存的就是基准数
     i=left;
     j=right;
@@ -165,7 +165,112 @@ int main()
 
 ---
 
+**例题**：小哼的学校要建立一个图书角，老师派小哼去找一些同学做调查，看看同学们都喜欢读哪些书。小哼让每个同学写出一个自己最想读的书的ISBN号（你知道吗？每本书都有唯一的ISBN号，不信话你去找本书翻到背面看看）。当然有一些好书会有很多同学都喜欢，这样就会收集到很多重复的ISBN号。小哼需要去掉其中重复的ISBN号，即每个ISBN号只保留一个，也就说同样的书只买一本（学校真是够抠门的）。然后再把这些ISBN号从小到大排序，小哼将按照排序好的ISBN号去书店去买书。请你协助小哼完成“去重”与“排序”的工作。
 
+输入格式:
+
+输入有2行，第1行为一个正整数，表示有n个同学参与调查（n<=100）。第2行有n个用空格隔开的正整数，为每本图书的ISBN号（假设图书的ISBN号在1~1000之间）。
+输出格式:
+
+输出也是2行，第1行为一个正整数k，表示需要买多少本书。第2行为k个用空格隔开的正整数，为从小到大已排好序的需要购买的图书ISBN号。
+提示:
+
+改编自全国青少年信息学奥林匹克联赛（NOIP2006）普及组第一题《明明的随机数》。
+限制:
+
+每个测试点1秒
+样例 1 :
+
+输入:
+
+```bash
+10
+20 40 32 67 40 20 89 300 400 15
+```
+
+输出:
+
+```bash
+8
+15 20 32 40 67 89 300 400
+```
+
+---
+
+思路：先从小到大排序(快速排序算法)，再去重
+
+```c++
+#include<iostream>
+#include"global1.h"//自定义头文件内容为：int a[101],i,j;作用定义全局变量
+using namespace std;
+void quicksort(int left, int right);
+int main()
+{	
+	int k = 1;//k用于去重计数
+	cin >> n;
+	for (i = 2; i <= n; i++)
+	{
+		cin >> a[i];
+	}
+	quicksort(1, n);
+	for (i = 2; i <= n; i++)//去重计数,i=2防止a[1]与a[0]比较
+	{	
+		if (a[i] != a[i - 1])
+		{
+			k++;
+		}
+		
+	}
+	cout << k << "\n";
+	cout << a[1]<<" ";
+	for (i = 2; i <= n; i++)//去重输出
+	{
+		if (a[i] != a[i - 1])
+		{
+			cout << a[i] << " ";
+		}
+		
+	}
+	return 0;
+}
+void quicksort(int left, int right)//快速排序函数
+{	
+	int temp , t;
+	if (left > right)
+	{
+		return;
+	}
+	i = left;
+	j = right;
+	temp = a[left];
+	while (i != j)
+	{
+		while (a[j] >= temp && i < j)
+		{
+			j--;
+		}
+		while (a[i] <= temp && i < j)
+		{
+			i++;
+		}
+		if (i < j)
+		{
+			t = a[j];
+			a[j] = a[i];
+			a[i] = t;
+		}
+	}
+	a[left] = a[i];
+	a[i] = temp;
+	quicksort(left, i - 1);
+	quicksort(i + 1, right);
+	return;
+}
+```
+
+---
+
+**队列**
 
 
 
