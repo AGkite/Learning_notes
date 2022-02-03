@@ -270,7 +270,63 @@ void quicksort(int left, int right)//快速排序函数
 
 ---
 
-**队列**
+**队列(先进先出First In First Out ,FIFO)**
+
+问题：给定加密过的一串数(6 3 1 7 5 8 9 2 4)解密小哈的QQ号，规则：首先将第一个数删除，紧接着将第二个数放到这串数的末尾，再将第三个数删除并将第四个数放到这串数的末尾，再将第五个数删除……直到剩下最后一个数，将最后一个数也删除。按照删除的顺序，把删除的数连在一起就是小哈的QQ号了。
+
+思路：
+
+data[]数组从data[1]开始使用
+
+head用来记录队列的队首（第一位数）
+
+tail用来记录队列的队尾（最后一位数）的下一个位置
+
+```C
+#include<stdio.h>//使用结构体来实现的队列操作
+struct queue 
+{
+    int data[100];//队列的主体，用来储存内容
+    int head;//队首
+    int tail;//队尾
+};
+int main()
+{
+    struct queue q;
+    int i;
+    //初始化队列
+    q.head = 1;
+    q.tail = 1;
+    for(i=1;i<=9;i++)
+    {
+        //依次向队列插入9个数
+        scanf("%d",&q.data[q.tail]);
+        q.tail++;
+    }
+    while(q.head<q.tail)//当队列不为空时执行循环
+    {
+        //打印队首并将队首出队
+        printf("%d",q.data[q.head]);
+        q.head++;
+        //先将新队首的数添加到队尾
+        q.data[q.tail]=q.data[q.head];
+        q.tail++;
+        //再将队首出队
+        q.head++;
+    }
+    getchar();getchar();
+    return 0;
+}
+
+```
+
+---
+
+**栈(后进先出)**
+
+
+
+
 
 
 
