@@ -69,8 +69,9 @@ int main()
 }
 ```
 
+运用结构体使分数与人名关联起来
+
 ```C
-//冒泡排序分数于人名关联起来
 #include <stdio.h>
 struct student
 {
@@ -197,7 +198,7 @@ int main()
 
 ---
 
-思路：先从小到大排序(快速排序算法)，再去重
+**思路**：先从小到大排序(快速排序算法)，再去重
 
 ```c++
 #include<iostream>
@@ -272,9 +273,9 @@ void quicksort(int left, int right)//快速排序函数
 
 **队列(先进先出First In First Out ,FIFO)**
 
-问题：给定加密过的一串数(6 3 1 7 5 8 9 2 4)解密小哈的QQ号，规则：首先将第一个数删除，紧接着将第二个数放到这串数的末尾，再将第三个数删除并将第四个数放到这串数的末尾，再将第五个数删除……直到剩下最后一个数，将最后一个数也删除。按照删除的顺序，把删除的数连在一起就是小哈的QQ号了。
+**问题**：给定加密过的一串数(6 3 1 7 5 8 9 2 4)解密小哈的QQ号，规则：首先将第一个数删除，紧接着将第二个数放到这串数的末尾，再将第三个数删除并将第四个数放到这串数的末尾，再将第五个数删除……直到剩下最后一个数，将最后一个数也删除。按照删除的顺序，把删除的数连在一起就是小哈的QQ号了。
 
-思路：
+**思路**：
 
 data[]数组从data[1]开始使用
 
@@ -324,13 +325,123 @@ int main()
 
 **栈(后进先出)**
 
+**问题**：解密回文，回文字符串是指从左到右读和从右到左读完全相同的字符串。
 
+​			"xyzyx"，"ahha"，"aha"均是一个回文字符串，如"ahah"等则不属于回文。
 
+**思路**：通过栈比较字符串的前半段与后半段
 
+```c
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char a[101],s[101];
+    int i,len,mid,next,top;
+    
+    gets(a);//读入一行字符串
+    len=strlen(a);//求字符串的长度
+    mid=len/2-1;//求字符串的中点
+    
+    top=0;//栈的初始化
+    //将mid前的字符依次入栈,从s[1]开始使用
+    for(i=0;i<=mid;i++)
+    {
+        s[++top]=a[i];//相当于top++;s[top]=a[i];
+    }
+    
+    //判断字符串的长度是基数还是偶数，并找出需要进行字符匹配的起始下标
+    if(len%2==0)
+    {
+        next=mid+1;
+    }
+    else
+    {
+        next=mid+2;
+    }
+    
+    //开始匹配
+    for(i=next;i<=len-1;i++)
+    {
+        if(a[i]!=s[top])
+        {
+            break;
+        }
+        top--;
+    }
+    
+    //如果top值为0，则说明栈内所有的字符串都被一一匹配了
+    if(top==0)
+    {
+        printf("YES");
+    }
+    else
+    {
+        printf("NO");
+    }
+    getchar();getchar();
+    return 0;
+}
+```
 
+若栈s[ ]从s[0]开始使用则：
 
-
-
+```c++
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main()
+{
+	char a[101],s[101];
+	int top=0,i,next,len,mid;
+	/*for(i=0;i<=100;i++)
+	{
+		cin>>a[i];
+		if(cin.get()=='\n')
+		{
+			break;
+		}
+	}*/
+	gets(a);
+	len = strlen(a);
+	mid = len/2 - 1;
+	for(i=0;i<=mid;i++)
+	{
+		s[top]=a[i];
+		top++;//以s[0]为栈底，此时top指向栈顶的上一个单元，非标准栈
+	}
+	if(len%2==0)
+	{
+		next=mid+1;
+	}
+	else
+	{
+		next=mid+2;
+	}
+	top--;//要操作栈顶的数据，所以将top指向栈顶
+	for(i=next;i<=len-1;i++)
+	{
+		if(a[i]==s[top])
+		{
+			top--;
+		}
+		else
+		{
+			break;
+		}
+	}
+	if(top==-1)
+	{
+		cout<<"YES";
+	}
+	else
+	{
+		cout<<"NO";
+	}
+	system("pause");
+	return 0; 
+ } 
+```
 
 
 

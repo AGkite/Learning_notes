@@ -173,9 +173,9 @@ while(1<2)
 **数组输入至回车结束** 
 
 ```c++
-int n=1，a[n]; 
+int n=1,a[n]; 
 cin>>n;
-for(int j=0;i<n;i++) 
+for(int j=0;i<n;i++) //也可以用gets(a)代替
 {
     cin >> a[i];
 	if (cin.get()=='\n')
