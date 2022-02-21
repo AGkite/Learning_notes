@@ -608,7 +608,7 @@ int main()
 
 运行结果
 
-![image-20220206180607041](AGkite/Learning_notes/Algorithms/images/image-20220206180607041.png)
+![image-20220206180607041](https://github.com/AGkite/Learning_notes/blob/master/Algorithms/images/image-20220206180607041.png)
 
 ---
 
