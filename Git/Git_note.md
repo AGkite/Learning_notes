@@ -75,6 +75,8 @@ git commit -m "update"	//参数 -m 后输入提交描述
 git push origin master	//master是分支名称
 ```
 
+---
+
 Git工作原理
 
 ![](E:\Learning_notes\Git\images\Fig.1.png)
@@ -85,9 +87,28 @@ Git工作原理
 git pull origin master
 ```
 
+查看暂存区文件
+
+```bash
+git ls-files
+```
+
+查看当前版本库的状态
+
+```bash
+git status  
+```
+
+查看指定commit_id对应的修改文件列表
+
+```bash
+git show --raw 			//查看最后一次提交记录的修改文件信息
+git show --raw c9f685ea9fa05d88fa9a0a44ed286f38995d2eb3
+```
+
 注意事项:
 
-push前先pull避免发生如下冲突
+push前最好先pull避免发生如下冲突
 
 ```bash
 $ git push origin master
