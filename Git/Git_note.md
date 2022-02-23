@@ -29,9 +29,9 @@ cat id_rsa.pub	//查看公钥
 
 复制公钥到GitHub->settings->SSH and GPG keys
 
-![](E:\Learning_notes\Git\images\aliyunssh1.PNG)
+![](https://github.com/AGkite/Learning_notes/tree/master/Git/images/aliyunssh1.PNG)
 
-![](E:\Learning_notes\Git\images\githubsettingskeys.PNG)
+![](https://github.com/AGkite/Learning_notes/tree/master/Git/images/githubsettingskeys.PNG)
 
 测试ssh是否成功设置
 
@@ -41,7 +41,7 @@ ssh git@github.com
 
 本地的id_rsa密钥跟GitHub上的id_rsa.pub公钥进行配对，授权成功后才可以提交代码。
 
-![](E:\Learning_notes\Git\images\aliyunssh2.PNG)
+![](https://github.com/AGkite/Learning_notes/tree/master/Git/images/aliyunssh2.PNG)
 
 设置Git的user name和email：
 
@@ -52,7 +52,7 @@ git config --global user.email "********@gmail.com"
 
 之后就可以克隆远程仓库到本地
 
-![](E:\Learning_notes\Git\images\aliyunssh3.PNG)
+![](https://github.com/AGkite/Learning_notes/tree/master/Git/images/aliyunssh3.PNG)
 
 编辑仓库文件后同步到远程仓库
 
@@ -79,7 +79,7 @@ git push origin master	//master是分支名称
 
 Git工作原理
 
-![](E:\Learning_notes\Git\images\Fig.1.png)
+![](https://github.com/AGkite/Learning_notes/tree/master/Git/images/Fig.1.png)
 
  拉取远程仓库到本地
 
