@@ -1,2 +1,119 @@
-**Git教程**
+**Git教程---linux**
+
+查看是否已经有了ssh密钥
+
+```bash
+cd ~/.ssh			
+```
+
+若没有安装ssh
+
+```bash
+sudo yum install sshd 			
+sudo yum install openssh-server			//centos
+```
+
+ github的SSH配置：
+
+ 生成SSH密钥过程：
+
+```bash
+ssh-keygen -t rsa -C "********@gmail.com"	//生成密钥
+```
+
+生成两个文件私钥id_rsa和公钥id_rsa.pub
+
+```bash
+cat id_rsa.pub	//查看公钥
+```
+
+复制公钥到GitHub->settings->SSH and GPG keys
+
+![](E:\Learning_notes\Git\images\aliyunssh1.PNG)
+
+![](E:\Learning_notes\Git\images\githubsettingskeys.PNG)
+
+测试ssh是否成功设置
+
+```bash
+ssh git@github.com
+```
+
+本地的id_rsa密钥跟GitHub上的id_rsa.pub公钥进行配对，授权成功后才可以提交代码。
+
+![](E:\Learning_notes\Git\images\aliyunssh2.PNG)
+
+设置Git的user name和email：
+
+```bash
+git config --global user.name "*****"
+git config --global user.email "********@gmail.com"
+```
+
+之后就可以克隆远程仓库到本地
+
+![](E:\Learning_notes\Git\images\aliyunssh3.PNG)
+
+编辑仓库文件后同步到远程仓库
+
+首先将文件加入暂存区
+
+```bash
+git add . //把本地所有untrack的文件都加入暂存区，并且会根据.gitignore做过滤
+git add * //忽略.gitignore把任何文件都加入
+```
+
+再将暂存区的内容提交到版本库（对象库）中
+
+```bash
+git commit -m "update"	//参数 -m 后输入提交描述
+```
+
+最后推送本地更新到远程仓库
+
+```bash
+git push origin master	//master是分支名称
+```
+
+Git工作原理
+
+![](E:\Learning_notes\Git\images\Fig.1.png)
+
+ 拉取远程仓库到本地
+
+```bash
+git pull origin master
+```
+
+注意事项:
+
+push前先pull避免发生如下冲突
+
+```bash
+$ git push origin master
+To https://github.com/AGkite/Learning_notes.git
+ ! [rejected]        master -> master (fetch first)
+error: failed to push some refs to 'https://github.com/AGkite/Learning_notes.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
