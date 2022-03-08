@@ -1,3 +1,137 @@
+[**Java API文档**](http://www.oracle.com/technetwork/java/api-141528.html)
+
+
+
+---
+
+**位移运算符**
+
+"<<"(左移)：a<<b表示将二进制形式的a逐位b，最低位空出的b位补0.
+
+例：
+
+```java
+int a=17;	a<<2=68//即17扩大了2*2=4倍
+```
+
+">>"(带符号右移)：a>>b表示将二进制形式的a逐位右移b位，最高位空出的b位补原来的符号位（即正数补0，负数补1）
+
+例：
+
+```java
+int a=17;	a>>2=17/2*2=4
+```
+
+">>>"(无符号右移)：a>>>b表示将二进制形式的a逐位右移b位，最高位空出的b位一律补0。
+
+例：
+
+```java
+int a=17;	a>>>2=17/2*2=4
+```
+
+---
+
+**跳转语句**
+
+带标签的break语句
+
+语法：break	标签 ；
+
+带标签的continue语句
+
+语法：continue	标签；
+
+```java
+outer:for(int i=0;i<3;i++)
+	{
+		inter:for(int j=0;j<5;j++)
+			{
+				if(j==0)
+				{
+					break outer;//跳出外层循环，程序结束
+				}
+				else if(j%2==0)
+				{
+					continue outer;//跳至外层循环，从下一个i值开始执行
+				}
+			}
+	}
+
+```
+
+---
+
+**String类**
+
+charAt()方法
+
+作用：返回char指定索引处的值。  指数范围为0至length() - 1 。 
+
+语法：
+
+```Java
+public char charAt(int index)
+```
+
+示例：
+
+```java
+public class Test {
+    public static void main(String args[]) {
+        String s = "ABCDEFGHIJK";
+        char result = s.charAt(6);
+        System.out.println(result);
+    }
+}
+//运行结果：G
+```
+
+length()方法
+
+作用：length() 方法用于返回字符串的长度。空字符串的长度返回 0。
+
+语法：
+
+```java
+public int length()
+```
+
+示例：
+
+```java
+public class Test {
+        public static void main(String args[]) {
+                String Str = new String("abcdefghijk");
+                System.out.print("字符串 Str1 长度 :");
+                System.out.println(Str.length());
+        }
+}
+//运行结果：11
+```
+
+replace()方法
+
+作用：replace() 方法通过用 newChar 字符替换字符串中出现的所有 searchChar 字符，并返回替换后的新字符串。
+
+语法：
+
+```java
+public String replace(char searchChar, char newChar)    
+```
+
+示例：
+
+```java
+public class Test{
+    public static void main(String args[]){
+        String str = new String("newoneooo");
+        System.out.println(str.replace('o','a'));
+    }
+}
+//运行结果：newaneaaa
+```
+
 **equals()方法和"=="的区别**
 
 **"=="的作用:**
@@ -14,39 +148,28 @@ byte,short,char,int,long,float,double,boolean之间的比较，应用双等号"=
 
 语法：str1.equals(str2)
 
+字符串：比较字符串的内容
+
 引用数据类型：默认情况下比较的是**地址值**。
 
-Object类中定义equals()方法的源码：
+示例：
 
 ```java
-public boolean equals(Object anObject) 
-{
-    if (this == anObject) 
-    {
-        return true;
-    }
-    if (anObject instanceof String) 
-    {
-        String anotherString = (String)anObject;
-        int n = value.length;
-        if (n == anotherString.value.length) 
-        {
-            char v1[] = value;
-            char v2[] = anotherString.value;
-            int i = 0;
-            while (n-- != 0) 
-            {
-                if (v1[i] != v2[i])
-                {    
-                    return false;
-                }
-                i++;
-            }
-            return true;
-        }
-    }
-    return false;
-}
+String s1 = "Hello";              // String 直接创建
+String s2 = "Hello";              // String 直接创建
+String s3 = s1;                   // 相同引用
+String s4 = new String("Hello");  // String 对象创建
+String s5 = new String("Hello");  // String 对象创建
+ 
+s1 == s1;         // true, 相同引用
+s1 == s2;         // true, s1 和 s2 都在公共池中，引用相同
+s1 == s3;         // true, s3 与 s1 引用相同
+s1 == s4;         // false, 不同引用地址
+s4 == s5;         // false, 堆中不同引用地址
+ 
+s1.equals(s3);    // true, 相同内容
+s1.equals(s4);    // true, 相同内容
+s4.equals(s5);    // true, 相同内容
 ```
 
 总结：
@@ -56,3 +179,12 @@ public boolean equals(Object anObject)
  equals()：比较的是两个字符串的内容（**内容比较**）
 
 **字符串相等判断的时候都使用equals()。**
+
+
+
+
+
+
+
+
+
