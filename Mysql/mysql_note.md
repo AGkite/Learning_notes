@@ -2,7 +2,7 @@
 
 将压缩包解压到D盘
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_12-04-47.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_12-04-47.png)
 
 在mysql安装目录下手动创建my.ini文件并填入以下内容
 
@@ -29,7 +29,7 @@ default-storage-engine=INNODB
 
 将mysql下的bin文件夹的绝对路径复制到系统变量中的path中
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-08-00.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-08-00.png)
 
 以管理员身份打开cmd，初始化mysql，mysql8.0之后自动生成data文件夹。
 
@@ -37,17 +37,17 @@ default-storage-engine=INNODB
 mysqld  --initialize-insecure //初始化mysql,但暂不设置root密码
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-14-55.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-14-55.png)
 
 初始化后mysql安装目录下将产生data文件，里面存放着mysql初始的数据库
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_12-06-28.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_12-06-28.png)
 
 ```mysql
 mysqld install mysql	//安装mysql服务
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-18-35.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-18-35.png)
 
 登录mysql
 
@@ -68,7 +68,7 @@ flush privileges;
 quit 或 exit
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-46-11.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-46-11.png)
 
 ```mysql
 mysql -uroot -p	//之后输入密码，使用mysql
@@ -78,7 +78,7 @@ mysql -uroot -p	//之后输入密码，使用mysql
 
 图形化界面连接mysql时可能出现mysqli_real_connect(): The server requested authentication method unknown to the client [caching_sha2_password]报错。
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-28-02.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-28-02.png)
 
 解决办法：
 
@@ -90,11 +90,11 @@ mysql -uroot -p	//之后输入密码，使用mysql
 alter user 'root'@localhost identified with mysql_native_password BY '123456';
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-57-16.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-57-16.png)
 
 即可成功登录图形化界面
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_11-59-17.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_11-59-17.png)
 
 ---
 
@@ -106,7 +106,7 @@ alter user 'root'@localhost identified with mysql_native_password BY '123456';
 show databases;
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_14-00-18.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_14-00-18.png)
 
 创建一个新的数据库
 
@@ -127,7 +127,7 @@ mysql> create table tb_productategory(
 mysql> show colunmns from tb_productategory;
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_00-06-01.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_00-06-01.png)
 
 查看当前数据库中有哪些表
 
@@ -136,4 +136,4 @@ use db_product;
 show tables;
 ```
 
-![](E:\Learning_notes\Mysql\images\Snipaste_2022-03-12_14-04-42.png)
+![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_14-04-42.png)
