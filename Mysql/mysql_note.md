@@ -2,7 +2,7 @@
 
 将压缩包解压到D盘
 
-![](https://github.com/AGkite/Learning_notes/blob/master/Mysql/images/Snipaste_2022-03-12_12-04-47.png)
+![](images/Snipaste_2022-03-12_12-04-47.png)
 
 在mysql安装目录下手动创建my.ini文件并填入以下内容
 
