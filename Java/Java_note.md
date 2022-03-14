@@ -180,11 +180,54 @@ s4.equals(s5);    // true, 相同内容
 
 **字符串相等判断的时候都使用equals()。**
 
+---
 
+**Java输入输出**
 
+输出
 
+```java
+System.out.print("hello_world");//输出不换行
+System.out.println("hello_world");//输出换行
+```
 
+输入单个字符
 
+```java
+import java.io.*;
+import java.util.*;
+public class Test{
+    public static void main(String[] args)throws IOException{
+        char c=(char)System.in.read();//输入单个字符
+        System.out.println(c);
+    }
+}
+
+```
+
+Scanner输入
+
+```java
+import java.io.*;
+import java.util.*;
+public class Test{
+    public static void main(String[] args)throws IOException{
+        Scanner in=new Scanner(System.in);
+        
+        int a=in.nextInt();//输入一个整数
+        System.out.println(a);
+         
+        double b=in.nextDouble();//输入一个双精度的浮点数
+        System.out.println(b);
+         
+        String str1=in.next();//输入字符串，遇到分号则输入终止
+        System.out.println(str1);
+         
+        String str2=in.nextLine();//输入一行，中间可有多个空格
+        System.out.println(str2);
+    }
+}
+```
 
 
 

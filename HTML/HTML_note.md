@@ -60,6 +60,51 @@
 **图像标签**
 
 ```html
+<img src="../resources/images/1.jpg" alt="图片" title="悬停文字" width="200" height="200">
+<!--
+src 为路径可以为绝对路径和相对路径（推荐）
+alt 图片名字
+title 鼠标悬停在图片上时显示
+width 图片宽度
+height 图片高度
+-->
+```
 
+**超链接标签**
+
+文字超链接
+
+```html
+<a href="图像标签.html" target="_blank">点击我跳转到图像标签页面</a>
+<a href="https://www.howonenew.com" target="_self">点击我跳转到博客</a>
+<!--
+href:必填，表示要跳转到那个页面
+target:表示窗口在哪里打开
+_blank:在新标签中打开
+_self:在本网页中打开
+-->
+```
+
+图片超链接
+
+```html
+<a href="图像标签.html">
+  <img src="../resources/images/1.jpg" alt="图片" title="头像" width="200" height="200">
+</a>
+```
+
+锚标签
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+</html>
 ```
 

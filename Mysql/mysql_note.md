@@ -137,3 +137,15 @@ show tables;
 ```
 
 ![](images/Snipaste_2022-03-12_14-04-42.png)
+
+组合主键
+
+```mysql
+create table abc(
+id int(10) auto_increment not null commrnt'系统自动编号',
+path varchar(225) not null comment'文件路径信息',
+constraint primary key (id,path));	//设置组合主键
+)
+```
+
+![](images\Snipaste_2022-03-14_23-28-44.png)
