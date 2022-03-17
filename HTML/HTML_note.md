@@ -108,3 +108,80 @@ _self:在本网页中打开
 </html>
 ```
 
+列表
+
+```html
+<!--有序列表-->
+<ol>
+    <li>c/c++</li>
+    <li>Java</li>
+    <li>python</li>
+    <li>go</li>
+</ol>
+<!--无序列表-->
+<ul>
+    <li>c/c++</li>
+    <li>Java</li>
+    <li>python</li>
+    <li>go</li>
+</ul>
+<!--自定义列表，多用于网页底部
+dl:标签
+dt:列表名称
+dd:列表内容
+-->
+<dl>
+    <dt>学科</dt>
+
+    <dd>c/c++</dd>
+    <dd>Java</dd>
+    <dd>python</dd>
+    <dd>go</dd>
+</dl>
+```
+
+![](images\Snipaste_2022-03-17_15-09-17.png)
+
+表格
+
+```html
+<!--表格table
+行: tr
+列: td
+-->
+<table border="1px"><!--border 设置边框大小-->
+    <tr>
+        <td colspan="4" align="center">学生成绩</td>
+        <!--colspan 合并列
+			rowspan 合并行
+			align   内容居中
+		-->
+    </tr>
+    <tr>
+        <td>姓名</td>
+        <td>语文</td>
+        <td>数学</td>
+        <td>英语</td>
+    </tr>
+    <tr>
+        <td>小明</td>
+        <td>90</td>
+        <td>100</td>
+        <td>90</td>
+    </tr>
+    <tr>
+        <td>李华</td>
+        <td>90</td>
+        <td>90</td>
+        <td>100</td>
+    </tr>
+    <tr>
+        <td rowspan="2">平均分</td>
+        <td>90</td>
+        <td>95</td>
+        <td>95</td>
+    </tr>
+</table>
+```
+
+![](images\Snipaste_2022-03-17_15-05-25.png)
