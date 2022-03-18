@@ -72,7 +72,7 @@ height 图片高度
 
 **超链接标签**
 
-文字超链接
+**文字超链接**
 
 ```html
 <a href="图像标签.html" target="_blank">点击我跳转到图像标签页面</a>
@@ -85,7 +85,7 @@ _self:在本网页中打开
 -->
 ```
 
-图片超链接
+**图片超链接**
 
 ```html
 <a href="图像标签.html">
@@ -93,7 +93,7 @@ _self:在本网页中打开
 </a>
 ```
 
-锚标签
+**锚标签**
 
 ```html
 <!DOCTYPE html>
@@ -108,7 +108,7 @@ _self:在本网页中打开
 </html>
 ```
 
-列表
+**列表**
 
 ```html
 <!--有序列表-->
@@ -142,7 +142,7 @@ dd:列表内容
 
 ![](images/Snipaste_2022-03-17_15-09-17.png)
 
-表格
+**表格**
 
 ```html
 <!--表格table
@@ -185,3 +185,16 @@ dd:列表内容
 ```
 
 ![](images/Snipaste_2022-03-17_15-05-25.png)
+
+**媒体标签**
+
+```html
+<video src="../resources/video/schoolweb.mp4" controls autoplay></video>
+<audio src="../resources/audio/陈奕迅-黄金时代.mp3" controls autoplay></audio>
+<!--音频和视频
+src:资源路径
+controls:控制条
+autoplay:自动播放
+-->
+```
+
