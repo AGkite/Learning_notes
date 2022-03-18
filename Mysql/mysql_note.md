@@ -1,4 +1,4 @@
-**mysql压缩包安装**
+**MySQL压缩包安装**
 
 将压缩包解压到D盘
 
@@ -121,10 +121,11 @@ mysql> create table tb_productategory(
 	-> pid int(11)null comment'父节点类型ID'); 
 ```
 
-创建成功后用show命令查看表的结构
+创建成功后用show或DESC命令查看表的结构
 
 ```mysql
-mysql> show colunmns from tb_productategory;
+show colunmns from tb_productategory;
+desc tb_productategory;
 ```
 
 ![](images/Snipaste_2022-03-12_00-06-01.png)
@@ -148,4 +149,84 @@ constraint primary key (id,path));	//设置组合主键
 )
 ```
 
-![](images\Snipaste_2022-03-14_23-28-44.png)
+![](images/Snipaste_2022-03-14_23-28-44.png)
+
+---
+
+**导入.sql文件到数据库**
+
+首先查看MySQL服务器配置信息
+
+```mysql
+show variables like '%char%';
+```
+
+更改字符集防止导入后出现乱码
+
+```mysql
+set names gbk;
+//同时修改以下三个值
+character_set_client
+character_set_connection
+character_set_results
+```
+
+![](images/Snipaste_2022-03-18_14-31-31.png)
+
+导入.sql文件
+
+```mysql
+source /路径……/db_logistics.sql
+```
+
+![](images/Snipaste_2022-03-18_14-39-10.png)
+
+---
+
+**更改数据库**
+
+添加字段到数据表
+
+```mysql
+alter table 表名 add 字段 类型 ……;
+```
+
+![](images/Snipaste_2022-03-18_15-20-29.png)
+
+![](images/Snipaste_2022-03-18_16-26-22.png)
+
+创建时间字段指定缺省值为插入记录时的系统日期和时间
+
+![](images/Snipaste_2022-03-18_16-34-19.png)
+
+设置数据表中字段唯一性
+
+```mysql
+alter table 数据表 add unique(字段); 
+```
+
+![](images/Snipaste_2022-03-18_15-53-28.png)
+
+删除表中的字段
+
+```mysql
+alter table 表名 drop 字段名;
+```
+
+![](images/Snipaste_2022-03-18_17-34-50.png)
+
+更改数据表名
+
+```mysql
+rename table 原表名 to 新表名;
+```
+
+![](images/Snipaste_2022-03-18_17-37-05.png)
+
+给数据表中字段设置外键
+
+```mysql
+alter table 表名1 add foreign key(表名1中字段) references 表名2(表名2中字段);
+```
+
+![](images/Snipaste_2022-03-18_17-54-23.png)

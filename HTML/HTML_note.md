@@ -140,7 +140,7 @@ dd:列表内容
 </dl>
 ```
 
-![](images\Snipaste_2022-03-17_15-09-17.png)
+![](images/Snipaste_2022-03-17_15-09-17.png)
 
 表格
 
@@ -184,4 +184,4 @@ dd:列表内容
 </table>
 ```
 
-![](images\Snipaste_2022-03-17_15-05-25.png)
+![](images/Snipaste_2022-03-17_15-05-25.png)
