@@ -110,6 +110,8 @@ _self:在本网页中打开
 
 **列表**
 
+作用：多用于网页底部分类栏
+
 ```html
 <!--有序列表-->
 <ol>
@@ -125,7 +127,7 @@ _self:在本网页中打开
     <li>python</li>
     <li>go</li>
 </ul>
-<!--自定义列表，多用于网页底部
+<!--自定义列表
 dl:标签
 dt:列表名称
 dd:列表内容
@@ -186,7 +188,9 @@ dd:列表内容
 
 ![](images/Snipaste_2022-03-17_15-05-25.png)
 
-**媒体标签**
+**媒体元素**
+
+作用：添加媒体娱乐到网页
 
 ```html
 <video src="../resources/video/schoolweb.mp4" controls autoplay></video>
@@ -198,3 +202,37 @@ autoplay:自动播放
 -->
 ```
 
+**内联框架**
+
+作用：在网页中内联（嵌入）另一个网页
+
+配合超链接标签可以主动跳转到网页
+
+```html
+<iframe src="" name="skip" frameborder="0" width="500px" height="600px"></iframe>
+<a href="http://www.howonenew.com" target="skip">点击跳转</a>
+```
+
+**表单**
+
+作用：注册用户窗口
+
+```html
+<!--表单form
+action:表单提交的位置，网站或请求处理地址
+method:post , get 提交方式
+get方式提交在url中可以看到提交信息，不安全，但高效
+post方式提交较安全，可传输大文件
+-->
+<form action="媒体元素.html" method="post">
+<!--文本输入框：input type="text"-->
+    <p>名字：<input type="text" name="username"></p>
+    <p>密码：<input type="password" name="pwd"></p>
+    <p>
+        <input type="submit">
+        <input type="reset">
+    </p>
+</form>
+```
+
+![](images/Snipaste_2022-03-20_17-38-04.png)
