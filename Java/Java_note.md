@@ -229,5 +229,52 @@ public class Test{
 }
 ```
 
+---
+
+**练习：**
+
+题目：编写一个程序，从编号1~50的学生中随机抽取一等奖1名，二等奖2名，三等奖3名，任何一名学生不能重复获奖，抽奖循序是：先抽三等奖，再抽二等奖，最后抽一等奖。
+
+```java
+public class StudentRandom {
+    public static void main(String[] args) {
+        int [] stu = new int[6];
+        for (int i = 0; i < 6; i++) {
+            stu[i]=(int)(Math.random()*50+1);
+            for(int j=0;j<i;j++){
+                if(stu[j]==stu[i]){
+                    stu[j]=(int)(Math.random()*50+1);
+                    j=-1;
+                }
+            }
+        }
+        System.out.println("获得一等奖学生："+stu[0]+"\n获得二等奖学生"+stu[1]+","+stu[2]+"\n获得三等奖学生"+stu[3]+","+stu[4]+","+stu[5]);
+    }
+}
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
