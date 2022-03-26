@@ -233,7 +233,9 @@ public class Test{
 
 **练习：**
 
-题目：编写一个程序，从编号1~50的学生中随机抽取一等奖1名，二等奖2名，三等奖3名，任何一名学生不能重复获奖，抽奖循序是：先抽三等奖，再抽二等奖，最后抽一等奖。
+题目：编写一个程序，从编号1~50的学生中随机抽取一等奖1名，二等奖2名，三等奖3名，任何一名
+
+学生不能重复获奖，抽奖循序是：先抽三等奖，再抽二等奖，最后抽一等奖。
 
 ```java
 public class StudentRandom {
@@ -254,9 +256,36 @@ public class StudentRandom {
 
 ```
 
+题目：编写Calculator.java 程序,
 
+实现功能：从命令行输入两个操作数和一个运算符,
 
+参数格式为：操作数1 运算符 操作数2
 
+其中,两个操作数为double类型,运算符为“+”、“-”、“*”、“/”中的一个,运行程序输出运算结果。
+
+```java
+import java.util.*;
+import static java.lang.Double.parseDouble;
+public class Calculator {
+    public static void main(String[] args) {
+        double num = 0;
+        System.out.println("请输入算术表达式：");
+        Scanner sin = new Scanner(System.in);
+        String str = sin.next();
+        int n =str.length();
+        for (int i = 0; i < n; i++) {
+            switch (str.charAt(i)) {
+                case '+' -> num = parseDouble(str.substring(0, i)) + parseDouble(str.substring(i + 1));
+                case '-' -> num = parseDouble(str.substring(0, i)) - parseDouble(str.substring(i + 1));
+                case '*' -> num = parseDouble(str.substring(0, i)) * parseDouble(str.substring(i + 1));
+                case '/' -> num = parseDouble(str.substring(0, i)) / parseDouble(str.substring(i + 1));
+            }
+        }
+        System .out.println(str+"="+num);
+    }
+}
+```
 
 
 

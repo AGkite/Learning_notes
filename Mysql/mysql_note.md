@@ -115,7 +115,7 @@ mysql> create database db_admin;//创建一个名为db_admin的数据库
 mysql> use db_admin;//选择数据库
 //创建数据表
 mysql> create table tb_productategory( 
-	-> id int(10) auto increment primary key not null comment'系统自动编号',
+	-> id int(10) auto_increment primary key not null comment'系统自动编号',
 	-> name varchar(50> not null comment'类别名称',
     -> level int(11) null comment'类别名称',
 	-> pid int(11)null comment'父节点类型ID'); 
