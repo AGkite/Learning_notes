@@ -287,13 +287,32 @@ public class Calculator {
 }
 ```
 
+**四舍五入**
 
+1、System.out.printf
 
+```java
+double a = 1.2356;
+System.out.printf("%.2f",a);//"%.nf" n为正整数，四舍五入保留小数点后n位
+```
 
+2、DecimalFormat
 
+```java
+import java.text.DecimalFormat;
+double a = 1.2356;
+DecimalFormat df = new DecimalFormat("#.##");//"#.##"小数点后面的#个数代表保留小数个数
+String format = df.format(a);
+System.out.println(a);
+```
 
+3、Math.round()
 
-
+```java
+double a = 1.2356;
+double round = Math.round(a*100)/100.0;
+System.out.println(round);
+```
 
 
 
