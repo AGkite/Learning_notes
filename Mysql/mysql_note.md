@@ -108,7 +108,16 @@ show databases;
 
 ![](images/Snipaste_2022-03-12_14-00-18.png)
 
-创建一个新的数据库
+创建数据库
+
+```mysql
+create database db_exp07 charact set=utf8 collate=utf8_general_ci;
+//charact set 用于指定数据库的字符集
+//collate 用于指定字符集的校对规则
+//字符集和校对规则是一对多的关系，每个字符集都有一个默认的校对规则，一般情况下，没有特殊需求，只设置其一即可。若都不设置则默认my.ini文件中指定方式
+```
+
+![](images/Snipaste_2022-04-14_22-22-53.png)
 
 ```mysql
 mysql> create database db_admin;//创建一个名为db_admin的数据库
@@ -138,6 +147,15 @@ show tables;
 ```
 
 ![](images/Snipaste_2022-03-12_14-04-42.png)
+
+删除数据表
+
+```mysql
+delete from 数据表;
+truncate table 数据表;
+```
+
+![](images/Snipaste_2022-04-04_14-51-46.png)
 
 组合主键
 
@@ -173,6 +191,10 @@ character_set_results
 
 ![](images/Snipaste_2022-03-18_14-31-31.png)
 
+查看当前 MySQL 使用的校对规则
+
+![](images/Snipaste_2022-04-14_22-30-00.png)
+
 导入.sql文件
 
 ```mysql
@@ -180,6 +202,26 @@ source /路径……/db_logistics.sql
 ```
 
 ![](images/Snipaste_2022-03-18_14-39-10.png)
+
+**导出数据表（.csv）**
+
+导出数据表中所有数据到.csv文件
+
+```mysql
+select * from 数据表 into outfile '路径';
+```
+
+![](images/Snipaste_2022-04-04_14-38-19.png)
+
+导出时出现错误
+
+"MySQL服务器正在运行--secure-file-priv选项，所以它不能执行这个语句"
+
+![](images/Snipaste_2022-04-04_14-31-28.png)
+
+解决办法
+
+
 
 ---
 
@@ -230,3 +272,80 @@ alter table 表名1 add foreign key(表名1中字段) references 表名2(表名2
 ```
 
 ![](images/Snipaste_2022-03-18_17-54-23.png)
+
+---
+
+**表数据的增、删、改操作**
+
+**增**
+
+对数据表插入数据
+
+```mysql
+insert into goods (字段1,字段2,字段3...) values('数据1','数据2','数据3');
+```
+
+![](images/Snipaste_2022-04-04_00-12-17.png)
+
+若创建数据表时设置了外键出现以下错误
+
+![](images/Snipaste_2022-04-03_22-26-44.png)
+
+解决办法，暂时禁用外键
+
+```mysql
+set foreign_key_checks=0;
+```
+
+查看外键使用情况
+
+```mysql
+select @@foreign_key_checks;
+```
+
+![](images/Snipaste_2022-04-03_22-33-02.png)
+
+---
+
+**删**
+
+带条件删除数据
+
+```mysql
+delete from 数据表 where 条件1 and 条件2;//and可用运算符&&代替
+```
+
+![](images/Snipaste_2022-04-04_13-48-30.png)
+
+---
+
+**改**
+
+改变数据表某一字段中所有数据
+
+```mysql
+update 数据表 set 字段=字段*1.1;//将所有数据增加10%
+```
+
+![](images/Snipaste_2022-04-04_13-25-29.png)
+
+带条件修改数据
+
+```mysql
+update 数据表 set 字段='...' where (条件);
+```
+
+![](images/Snipaste_2022-04-04_13-42-29.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
