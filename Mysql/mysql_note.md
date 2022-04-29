@@ -221,7 +221,20 @@ select * from 数据表 into outfile '路径';
 
 解决办法
 
+在my.ini文件中添加一行
 
+```mysql
+#不对mysqld的导入导出做限制
+secure_file_priv=
+```
+
+![](images/Snipaste_2022-04-29_09-20-33.png)
+
+重启MYSQL服务
+
+再次查看设置，Value为空白即设置成功。
+
+![](images/Snipaste_2022-04-04_23-49-10.png)
 
 ---
 
@@ -231,6 +244,12 @@ select * from 数据表 into outfile '路径';
 
 ```mysql
 alter table 表名 add 字段 类型 ……;
+```
+
+同时添加多个字段
+
+```mysql
+alter table 表名 add (字段1 类型 …… ，字段2 类型 ……);
 ```
 
 ![](images/Snipaste_2022-03-18_15-20-29.png)
@@ -275,7 +294,7 @@ alter table 表名1 add foreign key(表名1中字段) references 表名2(表名2
 
 ---
 
-**表数据的增、删、改操作**
+**表数据的增、删、改、查操作**
 
 **增**
 
@@ -337,15 +356,51 @@ update 数据表 set 字段='...' where (条件);
 
 ![](images/Snipaste_2022-04-04_13-42-29.png)
 
+---
 
+**查**
 
+基本语法
 
+```mysql
+select 字段 from 数据表名							//要查询的内容，指定数据表中的列
+where primary_constraint					   //查询时行必须满足的条件
+group by grouping_columns					   //如何对结果分组
+order by sorting_cloumns					   //如何对结果进行排序
+having secondary_constraint					   //查询时满足的第二条件
+limit count									   //限定输出的查询结果
+```
 
+单表查询
 
+查询符合条件的多列数据
 
+```mysql
+select 字段1,字段2,... from 数据表 where 条件1 and 条件2;
+```
 
+![](images/Snipaste_2022-04-07_22-53-43.png)
 
+查询存在某些字符的数据，同时区分大小写
 
+```mysql
+select 字段1,字段2,... from 数据表 where binary like '%A%';
+like-------匹配字符
+binary-----区分大小写
+%-----表示匹配多个字符
+_ ----表示匹配单个字符
+```
 
+![](images/Snipaste_2022-04-07_23-37-20.png)
 
+查询表中所有字段，将结果排序，显示前任意个数据
 
+```mysql
+select * from 数据表 order by 字段 desc limit 整数;
+order by-----对查询结果排序，默认升序输出
+desc---------降序排序
+asc----------升序排序
+limit -------限制查询结果的数量
+```
+
+![](images/Snipaste_2022-04-08_09-48-37.png)
