@@ -111,8 +111,8 @@ show databases;
 创建数据库
 
 ```mysql
-create database db_exp07 charact set=utf8 collate=utf8_general_ci;
-//charact set 用于指定数据库的字符集
+create database db_exp07 character set=utf8 collate=utf8_general_ci;
+//character set 用于指定数据库的字符集
 //collate 用于指定字符集的校对规则
 //字符集和校对规则是一对多的关系，每个字符集都有一个默认的校对规则，一般情况下，没有特殊需求，只设置其一即可。若都不设置则默认my.ini文件中指定方式
 ```
