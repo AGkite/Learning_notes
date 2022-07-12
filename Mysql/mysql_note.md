@@ -119,10 +119,9 @@ create database db_exp07 character set=utf8 collate=utf8_general_ci;
 
 ![](images/Snipaste_2022-04-14_22-22-53.png)
 
+创建数据表
+
 ```mysql
-mysql> create database db_admin;//创建一个名为db_admin的数据库
-mysql> use db_admin;//选择数据库
-//创建数据表
 mysql> create table tb_productategory( 
 	-> id int(10) auto_increment primary key not null comment'系统自动编号',
 	-> name varchar(50> not null comment'类别名称',
@@ -138,6 +137,29 @@ desc tb_productategory;
 ```
 
 ![](images/Snipaste_2022-03-12_00-06-01.png)
+
+ 根据以下数据表写出创建数据表的SQL语句。
+
+| 表名 | wm_pmix        |                |            |          |        |                                                              |
+| ---- | -------------- | -------------- | ---------- | -------- | ------ | ------------------------------------------------------------ |
+| 描述 | 产品构成信息表 |                |            |          |        |                                                              |
+| 序号 | 字段           | 注释           | 类型及长度 | 允许空值 | 缺省值 | 其它说明                                                     |
+| 1    | pmId           | 产品构成记录号 | int(11)    | 否       |        | 主键，自增                                                   |
+| 2    | prNo           | 产品编号       | char(8)    | 否       |        | 外键，关联到wm_product表的prNo字段——删除时cascade，更新时cascade |
+| 3    | paUnNo         | 零部件号       | char(8)    | 是       |        | 外键一，关联到wm_part表的paNo字段——删除时set null，更新时cascade；  外键二，关联到wm_unit表的unNo字段——删除时set null，更新时cascade； |
+| 4    | pmNum          | 数量           | int(11)    | 否       | 1      |                                                              |
+
+![](images/Snipaste_2022-06-24_18-00-16.png)
+
+在创建时间字段的时候
+
+```sql
+DEFAULT CURRENT_TIMESTAMP
+表示当插入数据的时候，该字段默认值为当前时间
+
+ON UPDATE CURRENT_TIMESTAMP
+表示每次更新这条数据的时候，该字段都会更新成当前时间
+```
 
 查看当前数据库中有哪些表
 
@@ -168,6 +190,14 @@ constraint primary key (id,path));	//设置组合主键
 ```
 
 ![](images/Snipaste_2022-03-14_23-28-44.png)
+
+组合主键和分别建立主键的区别
+
+1.组合主键：两个字段一起建立唯一约束，数据库将两个字段值**合并**后验证唯一性。
+
+2.分别建立主键：两个字段分别建立唯一约束，数据库**单独**验证每个字段中值的唯一性。
+
+例如：关系R(a,b)的两个记录r1(1,2)和r2(1,3)，如果分别建立唯一性约束，这两个记录是不能同时存在的，但一起建立唯一约束则是可以同时存在的
 
 ---
 
@@ -255,6 +285,22 @@ alter table 表名 add (字段1 类型 …… ，字段2 类型 ……);
 ![](images/Snipaste_2022-03-18_15-20-29.png)
 
 ![](images/Snipaste_2022-03-18_16-26-22.png)
+
+修改字段类型(数据类型，长度，默认值)
+
+```sql
+alter table user modify user_name 类型;
+```
+
+修改字段名
+
+```sql
+方法一：alter table 数据表 change 旧字段名  新字段名  新数据类型
+例如：  alter table user change user_name user_name1 varchar(10)
+
+方法二：alter table 数据表名 rename column z to x
+例如：  alter table user rename column user_name to user_name1
+```
 
 创建时间字段指定缺省值为插入记录时的系统日期和时间
 
@@ -371,7 +417,7 @@ having secondary_constraint					   //查询时满足的第二条件
 limit count									   //限定输出的查询结果
 ```
 
-单表查询
+**单表查询**
 
 查询符合条件的多列数据
 
@@ -380,6 +426,15 @@ select 字段1,字段2,... from 数据表 where 条件1 and 条件2;
 ```
 
 ![](images/Snipaste_2022-04-07_22-53-43.png)
+
+合并查询结果
+
+```sql
+select 字段 from 数据表1
+union
+select 字段 from 数据表2;
+//将两个结果集合并到一起
+```
 
 查询存在某些字符的数据，同时区分大小写
 
@@ -404,3 +459,340 @@ limit -------限制查询结果的数量
 ```
 
 ![](images/Snipaste_2022-04-08_09-48-37.png)
+
+**limit**如果给定两个参数，第一个参数指定第一个返回记录行的**偏移量（第几个开始）**，第二个参数指定返回记录行的**最大数目**。**初始记录行的偏移量是 0**(而不是 1)。
+
+![](images/Snipaste_2022-04-16_10-37-34.png)
+
+**复合查询**
+
+```sql
+select 字段1，字段2…… from 数据表1 where 字段=(select 字段 from 数据表2);
+```
+
+![](images/Snipaste_2022-04-16_10-56-37.png)
+
+**带IN关键字的子查询**
+
+IN运算符可以检测结果集中是否存在某个特定的值，如果检测成功则执行外部的查询。
+
+```sql
+select 字段1，字段2…… from 数据表1 where 字段 in (select 字段 from 数据表2);
+```
+
+**分组查询**
+
+将查询结果按照一个或多个字段进行分组，字段值相同的为一组。
+
+以下例子中，更据paykind字段分组，paykind字段只有（'货到付款'和'在线支付'）所以分为两组。
+
+```sql
+select 字段1,字段2 from 数据表1 
+group by 字段1
+with rollup;
+```
+
+**WITH ROLLUP**：在group by分组字段的基础上，另起一行进行数据汇总统计。
+
+效果：产生以下图片的合计一行
+
+![](images/Snipaste_2022-04-16_12-13-46.png)
+
+having子句
+
+```sql
+select 字段1,字段2 from 数据表1 
+where 条件1
+group by 字段1
+having 条件2;
+```
+
+![](images/Snipaste_2022-04-16_12-35-32.png)
+
+**WHERE子句与HAVING子句的区别。**
+
+1.作用对象不同，where作用于表或视图，having作用于组。
+
+2.执行顺序不同执行时先找出符合where条件，再分组，分组后再判断having条件
+
+3.where中不能使用聚合函数，having中可以，having跟group by 连在一起使用
+
+---
+
+**多表查询**
+
+**内连接：**
+
+返回两个表中联结字段相等的数据，取交集的部分。
+
+<img src="images/3.png" style="zoom: 50%;" />
+
+```sql
+语法一：
+select 字段1,字段2 from 数据表1
+inner join 数据表2 on 数据表1.字段=数据表2.字段
+group by 数据表.字段1
+having 条件2;
+```
+
+```sql
+语法二（简写）：
+select 字段1,字段2 from 数据表1,数据表2
+where 数据表1.字段=数据表2.字段
+group by 数据表.字段1
+having 条件2;
+```
+
+![](images/Snipaste_2022-04-28_17-18-10.png)
+
+**左连接：**
+
+返回左表中所有记录和右表中联结字段相等的记录，左表全部的数据加上交集的数据。
+
+<img src="images/1.png" style="zoom:50%;" />
+
+```sql
+select 字段1,字段2 from 数据表1（左表）
+left join 数据表2（右表） on 数据表1.字段=数据表2.字段
+group by 数据表.字段1
+having 条件2;
+```
+
+**右链接：**
+
+返回右表中所有记录和左表中联结字段相等的记录，右表全部的数据加上交集的数据。
+
+<img src="images/2.png" style="zoom:50%;" />
+
+```sql
+select 字段1,字段2 from 数据表1（左表）
+right join 数据表2（右表） on 数据表1.字段=数据表2.字段
+group by 数据表.字段1
+having 条件2;
+```
+
+---
+
+**使用正则表达式查询**
+
+```sql
+select * from 数据表 where 字段 regexp '匹配方式';
+```
+
+`^`含义：匹配特定字符或字符串开头的记录。
+
+`$`含义：匹配特定字符或字符串结尾的记录。
+
+`.`含义：匹配任意一个字符
+
+`[字符集合]`含义：例"[abc]"，匹配abc任意一个字符
+
+`[^字符集合]`含义：匹配字符集合**以外**的任意一个字符
+
+`s1|s2|s3`含义：匹配s1、s2、s3中任意一个字符串
+
+`*`含义：匹配多个该符号之前的字符，包括0个或1个。
+
+​		例：'J*A'，匹配A字符前出现过J字符的记录
+
+`+`含义：匹配多个该符号之前的字符，包括1个。
+
+​		例：'J+A'，匹配A字符前面至少出现过一个J字符的记录
+
+`字符串{N}`含义：匹配字符串出现N次。
+
+​		例：'a{3}'，匹配连续出现3次a的字符记录
+
+`字符串{M,N}`含义：匹配字符串出现至少M次，最多N次。
+
+​		例：'a{2,4}'，匹配最少出现2次，最多出现4次a字符的记录。
+
+正则表达式大全：https://github.com/any86/any-rule
+
+---
+
+**聚合函数**
+
+**数学函数**
+
+ABS(x)函数用于求绝对值。
+
+![](images/Snipaste_2022-07-12_00-33-51.png)
+
+FLOOR(x)函数返回小于或等于x的最大整数
+
+![](images/Snipaste_2022-07-12_00-35-57.png)
+
+RAND()函数返回0~1之间的随机数
+
+![](images/Snipaste_2022-07-12_00-37-56.png)
+
+PI()函数用于返回圆周率
+
+![](images/Snipaste_2022-07-12_00-39-29.png)
+
+TRUNCATE(x,y)函数返回x保留到小数点后y位的值
+
+![](images/Snipaste_2022-07-12_00-41-44.png)
+
+ROUND(x)函数返回离x最近的整数，即对x进行四舍五入。
+
+ROUND(x，y)函数返回x保留到小数点后y位，截断式四舍五入。
+
+![](images/Snipaste_2022-07-12_11-30-02.png)
+
+SQRT(x)函数用于求平方根。
+
+![](images/Snipaste_2022-07-12_11-33-13.png)
+
+**字符串函数**
+
+INSERT(s1,x,len,s2)函数将字符串s1中x位置开始，长度为len的字符串用字符串s2替代。
+
+![](images/Snipaste_2022-07-12_11-39-32.png)
+
+UPPER(s)和UCASE(s)函数将字符串s的所有字母转换成大写字母。
+
+![](images/Snipaste_2022-07-12_11-42-49.png)
+
+LEFT(s,n)函数返回字符串s的前n个字符。
+
+![](images/Snipaste_2022-07-12_11-44-26.png)
+
+RTRIM(s)函数去掉字符串s结尾处的空格。
+
+![](images/Snipaste_2022-07-12_11-49-37.png)
+
+SUBSTRING(s,n,len)函数从字符串s的第n个位置开始获取长度为len的字符串。
+
+![](images/Snipaste_2022-07-12_11-59-20.png)
+
+REVERSE(s)函数将字符串s的顺序反过来。
+
+![](images/Snipaste_2022-07-12_14-02-16.png)
+
+FIELD(s,s1,s2,……)函数返回第一个与字符串S匹配的字符串的位置。
+
+![](images/Snipaste_2022-07-12_14-05-33.png)
+
+获取子字符串相匹配的开始位置。
+
+（1）LOCATE(s1,s)表示子字符串s1在字符串s中的开始位置。
+
+（2）POSITION(s1 IN s)表示子字符串s1在字符串s中的开始位置。
+
+（3）INSTR(s,s1)表示子字符串s1在字符串s中的开始位置。
+
+![](images/Snipaste_2022-07-12_14-14-28.png)
+
+**日期和时间函数**
+
+CURDATE()和CURRENT_DATE()函数用于获取当前日期。
+
+![](images/Snipaste_2022-07-12_14-17-19.png)
+
+CURTIME()和CURRENT_TIME()函数用于获取当前时间。
+
+![](images/Snipaste_2022-07-12_14-20-09.png)
+
+NOW()函数用于获取当前日期和时间。
+
+类似函数有：CURRENT_TIMESTAMP()、LOCALTIME()、SYSDATE()、LOCALTIMESTAMP()。
+
+![](images/Snipaste_2022-07-12_14-23-27.png)
+
+DATEDIFF(d1,d2)函数用于计算日期d1与d2之间相隔的天数。
+
+![](images/Snipaste_2022-07-12_14-28-53.png)
+
+ADDDATE(d,n)函数返回起始日期d加上n天的日期。
+
+![](images/Snipaste_2022-07-12_14-31-07.png)
+
+ADDDATE(d,INTERVAL,expr type)函数返回起始日期d加上一个时间段后的日期。
+
+![](images/Snipaste_2022-07-12_14-34-25.png)
+
+SUBDATE(d,n)函数返回起始日期d减去n天的日期。
+
+![](images/Snipaste_2022-07-12_14-35-40.png)
+
+**条件判断函数**
+
+```sql
+IF(expr,v1,v2) //如果表达式expr成立，则执行v1，否则执行v2。
+
+IFNULL(v1,v2) //如果v1不为空，则显示v1的值，否则显示v2的值。
+
+CASE WHEN exxpr1 THEN v1 [WHEN expr2 THEN v2 ……] [ELSE vn] END //与switch语句类似。
+```
+
+**系统信息函数**
+
+1.获取MySQL版本号、连接数和数据库名的函数。
+
+VERSION()函数返回数据库的版本号。
+
+CONNECTION_ID()函数返回服务器的连接数，即到现在为止MySQL服务的连接次数。
+
+DATABASE()和SCHEMA()函数返回当前数据库名。
+
+![](images/Snipaste_2022-07-12_14-48-41.png)
+
+2.获取用户名的函数
+
+USER()、SYSTEM_USER()、SESSION_USER()、CURRENT_USER()、CURRENT_USER
+
+函数可以返回当前用户名称。
+
+3.获取字符串的字符集合排序方式的函数
+
+CHARSET(str)函数返回字符串str的字符集。
+
+COLLATION(str)函数返回字符串str的字符排列方式。
+
+![](images/Snipaste_2022-07-12_14-56-21.png)
+
+**其它函数**
+
+格式化函数
+
+FORMAT(x,n)函数可以将数字x进行格式化，将保留到小数点后n位并且四舍五入。
+
+![](images/Snipaste_2022-07-12_15-01-33.png)
+
+改变字符集的函数
+
+CONVERT(s USING cs)函数将字符串s的字符集变成字符集cs。
+
+![](images/Snipaste_2022-07-12_15-05-45.png)
+
+coalesce(a,b,c,……)函数
+
+```sql
+coalesce(a,b,c)
+参数说明：
+如果a==null,则选择b;如果b==null,则选择c;如果a!=null,则选择a;
+如果a b c 都为null，则返回为null（没意义）。
+```
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
