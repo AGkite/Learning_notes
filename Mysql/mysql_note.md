@@ -1,4 +1,10 @@
-**MySQL压缩包安装**
+# MySQL笔记
+
+[toc]
+
+## **MySQL的安装**
+
+### **MySQL压缩包安装**
 
 将压缩包解压到D盘
 
@@ -98,17 +104,9 @@ alter user 'root'@localhost identified with mysql_native_password BY '123456';
 
 ---
 
-**mysql创建数据库**
+## **创建数据库和数据表**
 
-进入mysql后查看有哪些数据库
-
-```mysql
-show databases;
-```
-
-![](images/Snipaste_2022-03-12_14-00-18.png)
-
-创建数据库
+### **创建数据库**
 
 ```mysql
 create database db_exp07 character set=utf8 collate=utf8_general_ci;
@@ -119,7 +117,15 @@ create database db_exp07 character set=utf8 collate=utf8_general_ci;
 
 ![](images/Snipaste_2022-04-14_22-22-53.png)
 
-创建数据表
+进入mysql后查看有哪些数据库
+
+```mysql
+show databases;
+```
+
+![](images/Snipaste_2022-03-12_14-00-18.png)
+
+### **创建数据表**
 
 ```mysql
 mysql> create table tb_productategory( 
@@ -201,7 +207,9 @@ constraint primary key (id,path));	//设置组合主键
 
 ---
 
-**导入.sql文件到数据库**
+## **数据库的导入导出**
+
+### **导入.sql文件到数据库**
 
 首先查看MySQL服务器配置信息
 
@@ -233,7 +241,7 @@ source /路径……/db_logistics.sql
 
 ![](images/Snipaste_2022-03-18_14-39-10.png)
 
-**导出数据表（.csv）**
+### **导出数据表（.csv）**
 
 导出数据表中所有数据到.csv文件
 
@@ -268,7 +276,7 @@ secure_file_priv=
 
 ---
 
-**更改数据库**
+## **更改数据表结构**
 
 添加字段到数据表
 
@@ -340,9 +348,9 @@ alter table 表名1 add foreign key(表名1中字段) references 表名2(表名2
 
 ---
 
-**表数据的增、删、改、查操作**
+## **表数据的增、删、改、查操作**
 
-**增**
+### **增**
 
 对数据表插入数据
 
@@ -372,7 +380,7 @@ select @@foreign_key_checks;
 
 ---
 
-**删**
+### **删**
 
 带条件删除数据
 
@@ -384,7 +392,7 @@ delete from 数据表 where 条件1 and 条件2;//and可用运算符&&代替
 
 ---
 
-**改**
+### **改**
 
 改变数据表某一字段中所有数据
 
@@ -404,7 +412,7 @@ update 数据表 set 字段='...' where (条件);
 
 ---
 
-**查**
+### **查**
 
 基本语法
 
@@ -417,7 +425,7 @@ having secondary_constraint					   //查询时满足的第二条件
 limit count									   //限定输出的查询结果
 ```
 
-**单表查询**
+#### **单表查询**
 
 查询符合条件的多列数据
 
@@ -464,7 +472,7 @@ limit -------限制查询结果的数量
 
 ![](images/Snipaste_2022-04-16_10-37-34.png)
 
-**复合查询**
+##### **复合查询**
 
 ```sql
 select 字段1，字段2…… from 数据表1 where 字段=(select 字段 from 数据表2);
@@ -472,7 +480,7 @@ select 字段1，字段2…… from 数据表1 where 字段=(select 字段 from 
 
 ![](images/Snipaste_2022-04-16_10-56-37.png)
 
-**带IN关键字的子查询**
+##### **带IN关键字的子查询**
 
 IN运算符可以检测结果集中是否存在某个特定的值，如果检测成功则执行外部的查询。
 
@@ -480,7 +488,7 @@ IN运算符可以检测结果集中是否存在某个特定的值，如果检测
 select 字段1，字段2…… from 数据表1 where 字段 in (select 字段 from 数据表2);
 ```
 
-**分组查询**
+##### **分组查询**
 
 将查询结果按照一个或多个字段进行分组，字段值相同的为一组。
 
@@ -519,9 +527,9 @@ having 条件2;
 
 ---
 
-**多表查询**
+#### **多表查询**
 
-**内连接：**
+##### **内连接：**
 
 返回两个表中联结字段相等的数据，取交集的部分。
 
@@ -545,7 +553,7 @@ having 条件2;
 
 ![](images/Snipaste_2022-04-28_17-18-10.png)
 
-**左连接：**
+##### **左连接：**
 
 返回左表中所有记录和右表中联结字段相等的记录，左表全部的数据加上交集的数据。
 
@@ -558,7 +566,7 @@ group by 数据表.字段1
 having 条件2;
 ```
 
-**右链接：**
+##### **右链接：**
 
 返回右表中所有记录和左表中联结字段相等的记录，右表全部的数据加上交集的数据。
 
@@ -573,7 +581,7 @@ having 条件2;
 
 ---
 
-**使用正则表达式查询**
+#### **使用正则表达式查询**
 
 ```sql
 select * from 数据表 where 字段 regexp '匹配方式';
@@ -611,9 +619,9 @@ select * from 数据表 where 字段 regexp '匹配方式';
 
 ---
 
-**聚合函数**
+## **聚合函数**
 
-**数学函数**
+### **数学函数**
 
 ABS(x)函数用于求绝对值。
 
@@ -645,7 +653,7 @@ SQRT(x)函数用于求平方根。
 
 ![](images/Snipaste_2022-07-12_11-33-13.png)
 
-**字符串函数**
+### **字符串函数**
 
 INSERT(s1,x,len,s2)函数将字符串s1中x位置开始，长度为len的字符串用字符串s2替代。
 
@@ -685,7 +693,7 @@ FIELD(s,s1,s2,……)函数返回第一个与字符串S匹配的字符串的位�
 
 ![](images/Snipaste_2022-07-12_14-14-28.png)
 
-**日期和时间函数**
+### **日期和时间函数**
 
 CURDATE()和CURRENT_DATE()函数用于获取当前日期。
 
@@ -717,7 +725,7 @@ SUBDATE(d,n)函数返回起始日期d减去n天的日期。
 
 ![](images/Snipaste_2022-07-12_14-35-40.png)
 
-**条件判断函数**
+### **条件判断函数**
 
 ```sql
 IF(expr,v1,v2) //如果表达式expr成立，则执行v1，否则执行v2。
@@ -727,7 +735,7 @@ IFNULL(v1,v2) //如果v1不为空，则显示v1的值，否则显示v2的值。
 CASE WHEN exxpr1 THEN v1 [WHEN expr2 THEN v2 ……] [ELSE vn] END //与switch语句类似。
 ```
 
-**系统信息函数**
+### **系统信息函数**
 
 1.获取MySQL版本号、连接数和数据库名的函数。
 
@@ -753,7 +761,7 @@ COLLATION(str)函数返回字符串str的字符排列方式。
 
 ![](images/Snipaste_2022-07-12_14-56-21.png)
 
-**其它函数**
+### **其它函数**
 
 格式化函数
 
@@ -777,6 +785,135 @@ coalesce(a,b,c)
 ```
 
 ---
+
+## **索引**
+
+意义：索引由数据表中一列或多列组合而成。目的是优化数据库的查询速度。
+
+### **创建数据表时创建索引**
+
+```sql
+create table tb_productategory( 
+id int(10) auto_increment primary key not null comment'系统自动编号',
+name varchar(50) not null comment'类别名称',
+level int(11) null comment'类别名称',
+pid int(11)null comment'父节点类型ID'),
+index(id),//创建普通索引
+unique index index_name(id),//创建唯一索引,index_name索引的名称可以任取
+fulltext key  index_name(level),//创建全文索引，全文索引只能创建在char、varchar、text类型字段上
+index index_name(name(20))//创建单列索引
+index index_name(name,pid)//创建多列索引
+spatial index index_name(level)//创建空间索引
+```
+
+### **已存在的数据表中创建数据表**
+
+```sql
+//基本语法
+create [unique|fulltext|spatial] index index_name
+on table_name(属性,[(length)[ASC|DESC]]);
+//length:用于指定索引长度
+```
+
+创建普通索引
+
+```sql
+create index 索引名 on 数据表名(字段名称);
+```
+
+创建唯一索引
+
+```sql
+create unique index 索引名 on 数据表名(字段名称);
+```
+
+创建全文索引
+
+```sql
+create fulltext index 索引名 on 数据表名(字段名称);
+```
+
+创建单列索引
+
+```sql
+create index 索引名 on 数据表名(字段名称(长度));
+```
+
+创建多列索引
+
+```sql
+create index 索引名 on 数据表名(字段1,字段2,……);
+```
+
+创建空间索引
+
+```sql
+create spatial index 索引名 on 数据表名(字段名称);
+```
+
+### **修改已存在在表上的索引**
+
+```sql
+//基本语法
+alter table table_name add [unique|fulltext|spatial] index index_name(属性名 [(length)[ASC|DESC]]);
+```
+
+添加普通索引
+
+```sql
+alter table 数据表名 add index 索引名(字段);
+```
+
+添加唯一索引
+
+```sql
+alter table 数据表名 add unique index 索引名(字段);
+```
+
+添加全文索引
+
+```sql
+alter table 数据表名 add fulltext index 索引名(字段);
+```
+
+添加单列索引
+
+```sql
+alter table 数据表名 add index 索引名(字段(长度));
+```
+
+添加多列索引
+
+```sql
+alter table 数据表名 add index 索引名(字段1,字段2,……);
+```
+
+添加空间 索引
+
+```sql
+alter table 数据表名 add spatial index 索引名(字段);
+```
+
+### **删除索引**
+
+```sql
+drop index index_name on table_name;
+```
+
+---
+
+## **视图**
+
+意义：视图是一个虚拟表，其内容由查询定义，方便用户对数据的操作。创建视图后不必每次操作都执行视图的查询语句，简化操作。
+
+### **创建视图**
+
+```sql
+create view 视图名称 as
+select * from table_name ;
+```
+
+![](images/Snipaste_2022-05-13_16-57-53.png)
 
 
 
