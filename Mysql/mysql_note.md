@@ -2,6 +2,46 @@
 
 [toc]
 
+* [MySQL笔记](#mysql笔记)
+  * [<strong>MySQL的安装</strong>](#mysql的安装)
+    * [<strong>MySQL压缩包安装</strong>](#mysql压缩包安装)
+  * [<strong>创建数据库和数据表</strong>](#创建数据库和数据表)
+    * [<strong>创建数据库</strong>](#创建数据库)
+    * [<strong>创建数据表</strong>](#创建数据表)
+  * [<strong>数据库的导入导出</strong>](#数据库的导入导出)
+    * [<strong>导入\.sql文件到数据库</strong>](#导入sql文件到数据库)
+    * [<strong>导出数据表（\.csv）</strong>](#导出数据表csv)
+  * [<strong>更改数据表结构</strong>](#更改数据表结构)
+  * [<strong>表数据的增、删、改、查操作</strong>](#表数据的增删改查操作)
+    * [<strong>增</strong>](#增)
+    * [<strong>删</strong>](#删)
+    * [<strong>改</strong>](#改)
+    * [<strong>查</strong>](#查)
+      * [<strong>单表查询</strong>](#单表查询)
+        * [<strong>复合查询</strong>](#复合查询)
+        * [<strong>带IN关键字的子查询</strong>](#带in关键字的子查询)
+        * [<strong>分组查询</strong>](#分组查询)
+      * [<strong>多表查询</strong>](#多表查询)
+        * [<strong>内连接：</strong>](#内连接)
+        * [<strong>左连接：</strong>](#左连接)
+        * [<strong>右链接：</strong>](#右链接)
+      * [<strong>使用正则表达式查询</strong>](#使用正则表达式查询)
+  * [<strong>聚合函数</strong>](#聚合函数)
+    * [<strong>数学函数</strong>](#数学函数)
+    * [<strong>字符串函数</strong>](#字符串函数)
+    * [<strong>日期和时间函数</strong>](#日期和时间函数)
+    * [<strong>条件判断函数</strong>](#条件判断函数)
+    * [<strong>系统信息函数</strong>](#系统信息函数)
+    * [<strong>其它函数</strong>](#其它函数)
+  * [<strong>索引</strong>](#索引)
+    * [<strong>创建数据表时创建索引</strong>](#创建数据表时创建索引)
+    * [<strong>已存在的数据表中创建数据表</strong>](#已存在的数据表中创建数据表)
+
+    * [<strong>修改已存在在表上的索引</strong>](#修改已存在在表上的索引)
+    * [<strong>删除索引</strong>](#删除索引)
+  * [<strong>视图</strong>](#视图)
+    * [<strong>创建视图</strong>](#创建视图)
+
 ## **MySQL的安装**
 
 ### **MySQL压缩包安装**
