@@ -1,8 +1,6 @@
-# MySQL笔记
+# **MySQL笔记**
 
-[toc]
-
-* [MySQL笔记](#mysql笔记)
+* [<strong>MySQL笔记目录</strong>](#mysql笔记)
   * [<strong>MySQL的安装</strong>](#mysql的安装)
     * [<strong>MySQL压缩包安装</strong>](#mysql压缩包安装)
   * [<strong>创建数据库和数据表</strong>](#创建数据库和数据表)
@@ -41,6 +39,14 @@
     * [<strong>删除索引</strong>](#删除索引)
   * [<strong>视图</strong>](#视图)
     * [<strong>创建视图</strong>](#创建视图)
+    * [<strong>操作视图</strong>](#操作视图)
+  * [<strong>存储过程和储存函数</strong>](#存储过程和储存函数)
+    * [<strong>存储过程</strong>](#存储过程)
+    * [<strong>储存函数</strong>](#储存函数)
+    * [<strong>变量的应用</strong>](#变量的应用)
+      * [<strong>局部变量</strong>](#局部变量)
+      * [<strong>全局变量</strong>](#全局变量)
+      * [<strong>变量赋值</strong>](#变量赋值)
 
 ## **MySQL的安装**
 
@@ -170,7 +176,7 @@ show databases;
 ```mysql
 mysql> create table tb_productategory( 
 	-> id int(10) auto_increment primary key not null comment'系统自动编号',
-	-> name varchar(50> not null comment'类别名称',
+	-> name varchar(50) not null comment'类别名称',
     -> level int(11) null comment'类别名称',
 	-> pid int(11)null comment'父节点类型ID'); 
 ```
@@ -955,17 +961,139 @@ select * from table_name ;
 
 ![](images/Snipaste_2022-05-13_16-57-53.png)
 
+### **操作视图**
 
+视图的操作与表的操作相似。
 
+**查看视图结构**
 
+```sql
+DESC 视图名称;
+```
 
+![](images/Snipaste_2022-05-13_16-55-03.png)
 
+**查看视图的信息**
 
+```sql
+show table status like '视图名'\G
+```
 
+![](images/Snipaste_2022-07-13_15-43-25.png)
 
+**查看视图详细定义**
 
+```sql
+show create view 视图名\G
+```
 
+![](images/Snipaste_2022-07-13_15-46-31.png)
 
+**修改视图**
+
+CREATE OR REPLACE VIEW语句，视图存在的情况下对视图进行修改，不存在时创建视图。
+
+```sql
+create or replace view 
+v_name(字段1,字段2,……)
+as select 语句;
+```
+
+ALTER VIEW语句
+
+```sql
+alter view v_name(字段1,字段2,……) as select 语句;
+```
+
+![](images/Snipaste_2022-05-13_19-51-04.png)
+
+**更新视图**
+
+对视图的更新其实就是对基本表的更新。
+
+![](images/Snipaste_2022-05-13_17-06-41.png)
+
+**删除视图**
+
+```sql
+drop view if exists v_name;
+```
+
+---
+
+## **存储过程和储存函数**
+
+### **存储过程**
+
+```sql
+delimiter $  //更改mysql的结束标志
+create procedure sp_name([IN|OUT|INOUT] 参数名 数据类型)
+begin
+SQL语句;
+end$
+sp_name---表示存储过程名
+IN---表示输入参数
+OUT---表时输出参数
+INOUT---表示既可以输入也可以输出
+```
+
+![](images/Snipaste_2022-05-27_18-18-19.png)
+
+存储过程的调用
+
+```sql
+call sp_name('值')
+```
+
+![](images/Snipaste_2022-05-27_18-18-07.png)
+
+### **储存函数**
+
+```
+delimiter $  //更改mysql的结束标志
+create function sp_name(参数名 数据类型)
+returns 数据类型
+begin
+return(SQL语句);
+end$
+sp_name---表示函数名
+IN---表示输入参数
+OUT---表时输出参数
+INOUT---表示既可以输入也可以输出
+```
+
+![](images/Snipaste_2022-05-27_18-30-07.png)
+
+存储函数的调用 
+
+```sql
+select sp_name()
+```
+
+### **变量的应用**
+
+#### **局部变量**
+
+局部变量只在定义该局部变量的BEGIN……END范围内有效
+
+定义局部变量
+
+```sql
+declare 变量名 数据类型
+declare 变量名 数据类型 default 值    //定义时赋值
+```
+
+#### **全局变量**
+
+全局变量也叫会话变量，在整个过程中有效，会话变量以字符'@'作为起始字符，不必声明就可以使用。
+
+![](images/Snipaste_2022-05-27_16-11-46.png)
+
+#### **变量赋值**
+
+```sql
+set a=10;
+```
 
 
 
