@@ -1,5 +1,7 @@
 # **MySQL笔记**
 
+**[MySQL中文文档](https://www.mysqlzh.com/)**
+
 * [<strong>MySQL笔记目录</strong>](#mysql笔记)
   * [<strong>MySQL的安装</strong>](#mysql的安装)
     * [<strong>MySQL压缩包安装</strong>](#mysql压缩包安装)
@@ -481,13 +483,16 @@ select 字段1,字段2,... from 数据表 where 条件1 and 条件2;
 
 ![](images/Snipaste_2022-04-07_22-53-43.png)
 
-合并查询结果
+合并查询结果union和union all
 
 ```sql
-select 字段 from 数据表1
-union
-select 字段 from 数据表2;
-//将两个结果集合并到一起
+//union将两个结果集合并到一起,不包括重复行,相当于加了个distinct, 同时进行默认规则的排序
+select 字段 from 数据表1 union select 字段 from 数据表2;
+
+//union all将两个结果集合并到一起,包括重复行,所有结果全部显示，不对结果进行排序
+select 字段 from 数据表1 union all select 字段 from 数据表2;
+
+总结：union all只是合并查询结果，并不会进行去重和排序操作，在没有去重的前提下，使用union all的执行效率要比union高
 ```
 
 查询存在某些字符的数据，同时区分大小写
@@ -624,6 +629,8 @@ right join 数据表2（右表） on 数据表1.字段=数据表2.字段
 group by 数据表.字段1
 having 条件2;
 ```
+
+总结图：<img src="images/sql_join.jpg" style="zoom:80%;" />
 
 ---
 
