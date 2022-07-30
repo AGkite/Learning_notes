@@ -551,6 +551,25 @@ group by 字段1
 with rollup;
 ```
 
+- worker 表的结果：
+
+| id   | name  | grade | salary |
+| ---- | ----- | ----- | ------ |
+| 1    | Tom   | A     | 2000   |
+| 2    | Ben   | B     | 3000   |
+| 1    | Tom   | A     | 2500   |
+| 4    | Alice | A     | 3500   |
+| 5    | Diana | C     | 3000   |
+| 6    | Jack  | D     | 2500   |
+
+**单字段分组**
+
+<img src="images/Snipaste_2022-07-30_09-18-11.png" style="zoom:44%;" />
+
+**多字段分组**
+
+<img src="images/Snipaste_2022-07-30_09-17-46.png" style="zoom:44%;" />
+
 **WITH ROLLUP**：在group by分组字段的基础上，另起一行进行数据汇总统计。
 
 效果：产生以下图片的合计一行
