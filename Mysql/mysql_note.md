@@ -26,6 +26,8 @@
         * [<strong>左连接：</strong>](#左连接)
         * [<strong>右链接：</strong>](#右链接)
       * [<strong>使用正则表达式查询</strong>](#使用正则表达式查询)
+  * [<strong>MySQL数据类型</strong>](#MySQL数据类型)
+  * [<strong>流程控制语句</strong>](#流程控制语句)
   * [<strong>聚合函数</strong>](#聚合函数)
     * [<strong>数学函数</strong>](#数学函数)
     * [<strong>字符串函数</strong>](#字符串函数)
@@ -36,7 +38,7 @@
   * [<strong>索引</strong>](#索引)
     * [<strong>创建数据表时创建索引</strong>](#创建数据表时创建索引)
     * [<strong>已存在的数据表中创建数据表</strong>](#已存在的数据表中创建数据表)
-
+  
     * [<strong>修改已存在在表上的索引</strong>](#修改已存在在表上的索引)
     * [<strong>删除索引</strong>](#删除索引)
   * [<strong>视图</strong>](#视图)
@@ -595,6 +597,50 @@ having 条件2;
 
 3.where中不能使用聚合函数，having中可以，having跟group by 连在一起使用
 
+**ONLY_FULL_GROUP_BY错误：**
+
+![](images/Snipaste_2022-08-06_00-13-46.png)
+
+```sql
+1055 (42000) Expression #1 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'library.borrow.rno' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by
+```
+
+原因：mysql 5.7后默认启用ONLY_FULL_GROUP_BY特性，即：对于GROUP BY聚合操作，如果在SELECT中的列，没有在GROUP BY中出现，那么这个SQL是不合法的，因为列不在GROUP BY从句中，也就是说查出来的列必须在group by后面出现否则就会报错，或者这个字段出现在聚合函数里面。
+
+解决方法一：(仅能在当前会话中有效，即当前的cmd命令窗口)
+
+首先，查看MySQL版本号和sql_mode的值
+
+![](images/Snipaste_2022-08-06_00-12-35.png)
+
+改变sql_mode的值，删除ONLY_FULL_GROUP_BY
+
+```sql
+set @@sql_mode=(select replace(@@sql_mode,'ONLY_FULL_GROUP_BY',''));
+```
+
+解决方法二：
+
+在错误字段加上ANY_VALUE(字段)函数
+
+```sql
+select any_value(bname),group_id from book group by group_id;
+```
+
+解决方法三：
+
+修改my.ini(windows),my.cnf(linux,mos)
+
+mysql 8.0 以上取消了NO_AUTO_CREATE_USER这个关键字，所以不填，否则将会出现mysql启动错误。
+
+```
+[mysqld]
+#去掉ONLY_FULL_GROUP_BY和NO_AUTO_CREATE_USER选项
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+```
+
+之后，重启mysql服务。
+
 ---
 
 #### **多表查询**
@@ -691,9 +737,63 @@ select * from 数据表 where 字段 regexp '匹配方式';
 
 ---
 
+## **MySQL数据类型**
+
+**LongBlob (lang binary large object)数据类型：**二进制大对象，是一个可以存储二进制文件的容器。BLOB是一个大文件，典型的BLOB是一张图片或一个声音文件。
+
+**存储日期的数据类型：**
+
+**Date数据类型：**用来存储没有时间的日期。Mysql获取和显示这个类型的格式为“YYYY-MM-DD”。支持的时间范围为“1000-00-00”到“9999-12-31”。
+
+**Datetime类型：**存储既有日期又有时间的数据。存储和显示的格式为 “YYYY-MM-DD HH:MM:SS”。支持的时间范围是“1000-00-00 00:00:00”到“9999-12-31 23:59:59”。
+
+**Timestamp类型：**也是存储既有日期又有时间的数据。存储和显示的格式跟Datetime一样。支持的时间范围是“1970-01-01 00:00:01”到“2038-01-19 03:14:07”。
+
+所有不符合上面所述格式的数据都会被转换为相应类型的0值。（0000-00-00或者0000-00-00 00:00:00）
+
+## **流程控制语句**
+
+**IF语句**
+
+```sql
+if		条件1	  then   选项1
+elseif	条件2   then   选项2
+.......
+else	选项3
+end;
+```
+
+**CASE语句**
+
+格式 : 简单Case函数 
+
+```sql
+case 列名
+　　　　when   条件值1   then  选项1
+　　　　when   条件值2   then  选项2
+　　　　.......
+　　　　else   默认值      
+end;
+```
+
+格式 :Case搜索函数
+
+```sql
+　case  
+　　　　when  列名= 条件值1   then  选择项1
+　　　　when  列名=条件值2    then  选项2
+　　　　.......
+　　　　else  默认值 
+end;
+```
+
+CASE函数只返回第一个符合条件的值，剩下的when部分将会被自动忽略。
+
 ## **聚合函数**
 
 ### **数学函数**
+
+AVG(x)函数用于求平均值。
 
 ABS(x)函数用于求绝对值。
 

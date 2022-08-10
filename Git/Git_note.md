@@ -1,4 +1,6 @@
-**Git教程---linux**
+## **Git学习笔记---linux**
+
+### **本地安装Git**
 
 查看是否已经有了ssh密钥
 
@@ -77,7 +79,7 @@ git push origin master	//master是分支名称
 
 ---
 
-Git工作原理
+### Git工作原理
 
 ![](images/Fig.1.png)
 
@@ -106,9 +108,11 @@ git show --raw 			//查看最后一次提交记录的修改文件信息
 git show --raw c9f685ea9fa05d88fa9a0a44ed286f38995d2eb3
 ```
 
-注意事项:
+---
 
-push前最好先pull避免发生如下冲突
+### **遇到的错误：**
+
+**一.**push前最好先pull避免发生如下冲突
 
 ```bash
 $ git push origin master
@@ -121,8 +125,19 @@ hint: to the same ref. You may want to first integrate the remote changes
 hint: (e.g., 'git pull ...') before pushing again.
 hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
-GitHub官方文档:
-https://docs.github.com/cn
+解决办法：向远程仓库拉取代码pull，同步本地仓库。
+
+**二.**Git Warning: LF will be replaced by CRLF
+
+<img src="images/Snipaste_2022-08-10_13-29-20.png" style="zoom:50%;" />
+
+解决办法：
+
+```bash
+git config --global core.autocrlf false
+```
+
+[GitHub官方文档:](https://docs.github.com/cn)
 
 
 
