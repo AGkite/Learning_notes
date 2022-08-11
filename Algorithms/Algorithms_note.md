@@ -1,4 +1,8 @@
-**简化版的桶排序**
+## **数据结构与算法**
+
+### **一、排序**
+
+#### **Ⅰ、简化版的桶排序**
 
 **问题描述** ：将同学们的分数从低到高进行排序，总共有5个同学，分别考了5 分、 3 分、5 分、 2 分和 8 分（满分是 10 分）。
 
@@ -33,7 +37,7 @@ int main()
 
 ---
 
-**冒泡排序**
+#### **Ⅱ、冒泡排序**
 
 **基本思想**：每次比较两个相邻的元素，如果它们的顺序错误就把它们交换。
 
@@ -104,7 +108,7 @@ int main()
 
 ---
 
-**快速排序**
+#### **Ⅲ、快速排序**
 
 **算法思路**：首先在这个序列中选择一个基准数temp，先从右往左找一个小于 temp的数，再从左往右找一个大于 temp 的数，然后交换它们。这里用两个变量 i 和 j代表两个哨兵，分别指向序列最左边和最右边。右边的哨兵j先出动，找到小于基准数的数之后停下，然后左边的哨兵i找到大于基准数的数之后停下，两两交换。直到两个哨兵碰头，再将基准数归位。接下来继续处理左边的，再继续处理右边的这是一个递归调用函数的过程。
 
@@ -164,7 +168,9 @@ int main()
 }
 ```
 
-**例题**：小哼的学校要建立一个图书角，老师派小哼去找一些同学做调查，看看同学们都喜欢读哪些书。小哼让每个同学写出一个自己最想读的书的ISBN号（你知道吗？每本书都有唯一的ISBN号，不信话你去找本书翻到背面看看）。当然有一些好书会有很多同学都喜欢，这样就会收集到很多重复的ISBN号。小哼需要去掉其中重复的ISBN号，即每个ISBN号只保留一个，也就说同样的书只买一本（学校真是够抠门的）。然后再把这些ISBN号从小到大排序，小哼将按照排序好的ISBN号去书店去买书。请你协助小哼完成“去重”与“排序”的工作。
+##### **改编《明明的随机数》**
+
+小哼的学校要建立一个图书角，老师派小哼去找一些同学做调查，看看同学们都喜欢读哪些书。小哼让每个同学写出一个自己最想读的书的ISBN号（你知道吗？每本书都有唯一的ISBN号，不信话你去找本书翻到背面看看）。当然有一些好书会有很多同学都喜欢，这样就会收集到很多重复的ISBN号。小哼需要去掉其中重复的ISBN号，即每个ISBN号只保留一个，也就说同样的书只买一本（学校真是够抠门的）。然后再把这些ISBN号从小到大排序，小哼将按照排序好的ISBN号去书店去买书。请你协助小哼完成“去重”与“排序”的工作。
 
 输入格式:
 
@@ -267,7 +273,7 @@ void quicksort(int left, int right)//快速排序函数
 
 ---
 
-**队列(先进先出First In First Out ,FIFO)**
+### **二、队列(先进先出First In First Out ,FIFO)**
 
 **问题**：给定加密过的一串数(6 3 1 7 5 8 9 2 4)解密小哈的QQ号，规则：首先将第一个数删除，紧接着将第二个数放到这串数的末尾，再将第三个数删除并将第四个数放到这串数的末尾，再将第五个数删除……直到剩下最后一个数，将最后一个数也删除。按照删除的顺序，把删除的数连在一起就是小哈的QQ号了。
 
@@ -319,7 +325,7 @@ int main()
 
 ---
 
-**栈(后进先出)**
+### **三、栈(后进先出)**
 
 **问题**：解密回文，回文字符串是指从左到右读和从右到左读完全相同的字符串。
 
@@ -441,7 +447,9 @@ int main()
 
 ---
 
-**问题**：纸牌游戏---小猫钓鱼，游戏规则：将一副扑克牌平均分成两份，每人拿一份。小哼先拿出手中第一张牌放在桌面上，然后小哈也拿出手中的第一张牌，并放在小哼刚打出的牌的上面，两人交替出牌。出牌时，如果某人打出的牌与桌面上某张牌的牌面相同，即可将两张相同的牌及中间夹着的牌全部那走，并依次放在自己手中牌的末尾。当任意一人手中的牌全部出完时，游戏结束。假设小哼手中有6张牌顺序为：2	4	1	2	5	6，小哈手中的牌：3	1	3	5	6	4，且牌面只有1~9。
+##### **小猫钓鱼**
+
+纸牌游戏---小猫钓鱼，游戏规则：将一副扑克牌平均分成两份，每人拿一份。小哼先拿出手中第一张牌放在桌面上，然后小哈也拿出手中的第一张牌，并放在小哼刚打出的牌的上面，两人交替出牌。出牌时，如果某人打出的牌与桌面上某张牌的牌面相同，即可将两张相同的牌及中间夹着的牌全部那走，并依次放在自己手中牌的末尾。当任意一人手中的牌全部出完时，游戏结束。假设小哼手中有6张牌顺序为：2	4	1	2	5	6，小哈手中的牌：3	1	3	5	6	4，且牌面只有1~9。
 
 **思路**：将出牌动作看成**出队**，赢牌就是**入队**。桌面相当于一个**栈**。即需要两个**队列**和一个**栈**模拟整个游戏。使用结构体实现**队列**和**栈**。
 
@@ -612,9 +620,122 @@ int main()
 
 ---
 
-**链表**
+### **四、链表**
 
-**问题**：已有一串从小到大排好序的数2	3	5	8	10	18	26	32。现需要往这串数中插入6使其得到的新序列仍符合从小到大排序。
+##### **链表的创建，插入，删除，查找**
+
+```java
+public class LinkedList<T>{
+    private class Node{
+        T data;
+        Node next;
+        public Node(T data){
+            this.data = data;
+        }
+    }
+    public Node head;
+    public Node last;
+    public int size;
+
+    /**
+     * 查找元素
+     *
+     * @param index 位置
+     * @return {@link T}
+     */
+    public Node get(int index){
+        if(index<0 || index>=size){
+            throw new IndexOutOfBoundsException("索引超出链表范围。");
+        }
+        Node tmp = head;
+        for (int i = 0; i < index; i++) {
+            tmp = tmp.next;
+        }
+        return tmp;
+    }
+
+    /**
+     * 输出链表
+     */
+    public void output(){
+        Node tmp = head;
+        while(tmp != null){
+            System.out.println(tmp.data);
+            tmp = tmp.next;
+        }
+    }
+    /**
+     * 插入元素
+     *
+     * @param index 位置
+     * @param data  数据
+     */
+    public void insert(int index,T data){
+        if(index<0 || index>size){
+            throw new IndexOutOfBoundsException("索引超出链表范围。");
+        }
+        Node insertNode = new Node(data);
+        if(size == 0){
+            //空链表
+            head = insertNode;
+            last = insertNode;
+        }
+        /*插入头部*/
+        else if(index == 0){
+            insertNode.next = head;
+            head = insertNode ;
+        }
+        /*插入尾部*/
+        else if(index == size){
+            last.next = insertNode;
+            insertNode.next = null;
+            last = insertNode;
+        }
+        /*插入中间*/
+        else{
+            Node prevNode = get(index-1);
+            insertNode.next = prevNode.next;
+            prevNode.next = insertNode;
+        }
+        size++;
+    }
+	/**
+     * 删除节点
+     *
+     * @param index 位置
+     * @return {@link Node}
+     */
+    public Node remove(int index){
+        if(index<0 || index>=size){
+            throw new IndexOutOfBoundsException("索引超出链表范围。");
+        }
+        Node removeNode = null;
+        /*删除尾节点*/
+        if(index == size-1){
+            Node prevNode = get(index-1);
+            removeNode = prevNode.next;
+            prevNode.next = null;
+            last = prevNode;
+        }
+        /*删除头节点*/
+        else if(index == 0){
+            removeNode = head;
+            head = head.next;
+        }
+        /*删除中间节点*/
+        else{
+            Node prevNode = get(index-1);
+            removeNode = prevNode.next;
+            prevNode.next = prevNode.next.next;
+        }
+        size--;
+        return removeNode;
+    }
+```
+
+##### **插入数字**
+
+已有一串从小到大排好序的数2	3	5	8	10	18	26	32。现需要往这串数中插入6使其得到的新序列仍符合从小到大排序。
 
 输入：
 
@@ -631,6 +752,40 @@ int main()
 ```
 
 **思路**：若用数组则需要8和8后面的数都依次往后挪一位但时间复杂度高，因此使用链表。
+
+Java题解：
+
+```java
+public static void main(String[] args) {
+	LinkedList linkedList = new LinkedList<>();
+    linkedList.insert(0,2);
+    linkedList.insert(1,3);
+    linkedList.insert(2,5);
+    linkedList.insert(3,8);
+    linkedList.insert(4,9);
+    linkedList.insert(5,10);
+    linkedList.insert(6,18);
+    linkedList.insert(7,26);
+    linkedList.insert(8,32);
+    linkedList.output();
+    System.out.println();
+    int index = 0;
+    for (int i = 0; i < linkedList.size; i++) {
+        if((int)linkedList.get(i).data > 6){
+            index = i ;
+            break;
+        }
+    }
+    linkedList.insert(index,6);
+    linkedList.output();
+}
+```
+
+运行结果
+
+<img src="images/Snipaste_2022-08-11_20-44-49.png" style="zoom:67%;" />
+
+C++题解：
 
 ```c
 #include<stdio.h>
@@ -691,7 +846,7 @@ int main()
 }
 ```
 
-运行结果
+
 
 
 
