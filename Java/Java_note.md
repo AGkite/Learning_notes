@@ -1,10 +1,10 @@
 [**Java API文档**](http://www.oracle.com/technetwork/java/api-141528.html)
 
+# **Java学习笔记**
 
+## **运算符**
 
----
-
-**位移运算符**
+### **位移运算符**
 
 "<<"(左移)：a<<b表示将二进制形式的a逐位b，最低位空出的b位补0.
 
@@ -32,9 +32,42 @@ int a=17;	a>>>2=17/2*2=4
 
 ---
 
-**跳转语句**
+### **算术运算符**
 
-带标签的break语句
+**四舍五入**
+
+1、System.out.printf
+
+```java
+double a = 1.2356;
+System.out.printf("%.2f",a);//"%.nf" n为正整数，四舍五入保留小数点后n位
+```
+
+2、DecimalFormat
+
+```java
+import java.text.DecimalFormat;
+double a = 1.2356;
+DecimalFormat df = new DecimalFormat("#.##");//"#.##"小数点后面的#个数代表保留小数个数
+String format = df.format(a);
+System.out.println(a);
+```
+
+3、Math.round()
+
+```java
+double a = 1.2356;
+double round = Math.round(a*100)/100.0;
+System.out.println(round);
+```
+
+---
+
+## **流程控制**
+
+### **循环控制**
+
+#### break语句
 
 语法：break	标签 ；
 
@@ -62,9 +95,11 @@ outer:for(int i=0;i<3;i++)
 
 ---
 
-**String类**
+## **字符串**
 
-charAt()方法
+### **String类**
+
+**charAt()方法**
 
 作用：返回char指定索引处的值。  指数范围为0至length() - 1 。 
 
@@ -87,7 +122,7 @@ public class Test {
 //运行结果：G
 ```
 
-length()方法
+**length()方法**
 
 作用：length() 方法用于返回字符串的长度。空字符串的长度返回 0。
 
@@ -110,7 +145,7 @@ public class Test {
 //运行结果：11
 ```
 
-replace()方法
+**replace()方法**
 
 作用：replace() 方法通过用 newChar 字符替换字符串中出现的所有 searchChar 字符，并返回替换后的新字符串。
 
@@ -182,7 +217,7 @@ s4.equals(s5);    // true, 相同内容
 
 ---
 
-**Java输入输出**
+## **I/O(输入/输出)**
 
 输出
 
@@ -287,38 +322,68 @@ public class Calculator {
 }
 ```
 
-**四舍五入**
+---
 
-1、System.out.printf
+## **集合类**
 
-```java
-double a = 1.2356;
-System.out.printf("%.2f",a);//"%.nf" n为正整数，四舍五入保留小数点后n位
-```
+### **List集合**
 
-2、DecimalFormat
+List集合中元素**可以重复**，各元素的顺序就是对象插入的顺序。
 
-```java
-import java.text.DecimalFormat;
-double a = 1.2356;
-DecimalFormat df = new DecimalFormat("#.##");//"#.##"小数点后面的#个数代表保留小数个数
-String format = df.format(a);
-System.out.println(a);
-```
+#### **LinkedList**
 
-3、Math.round()
+**常用于创建链表**
 
-```java
-double a = 1.2356;
-double round = Math.round(a*100)/100.0;
-System.out.println(round);
-```
+LinkedList 实现了List 接口，能对它进行列表操作。
 
+LinkedList 实现了Deque 接口，即能将LinkedList当作双端队列使用。
 
+LinkedList 实现了Cloneable接口，能克隆。
 
+**常用方法**
 
+**增**
+ public void addFirst(E e)，添加到第一个元素
 
+ public void addLast(E e)，添加到最后一个元素
 
+ public boolean offer(E e)，向链表末尾添加元素，返回是否成功
+
+ public boolean offerFirst(E e)，头部插入元素，返回是否成功
+
+ public boolean offerLast(E e)，尾部插入元素，返回是否成功
+
+**删**
+
+public void clear()，清空链表
+
+ public E removeFirst()，删除并返回第一个元素
+
+ public E removeLast()，删除并返回最后一个元素
+
+ public boolean remove(Object o)，删除某一元素，返回是否成功
+
+ public E remove(int index)，删除指定位置的元素
+
+ public E poll()，删除并返回第一个元素
+
+ public E remove()，删除并返回第一个元素
+
+**查**
+
+public boolean contains(Object o)，判断是否含有某一元素
+
+public E peek()，返回第一个元素
+
+public E peekFirst()，返回头部元素
+
+public E peekLast()，返回尾部元素
+
+**改**
+
+public E set(int index, E element)，设置指定位置的元素
+
+---
 
 
 

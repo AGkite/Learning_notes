@@ -1,8 +1,8 @@
-## **数据结构与算法**
+# **数据结构与算法**
 
-### **一、排序**
+## **一、排序**
 
-#### **Ⅰ、简化版的桶排序**
+### **Ⅰ、简化版的桶排序**
 
 **问题描述** ：将同学们的分数从低到高进行排序，总共有5个同学，分别考了5 分、 3 分、5 分、 2 分和 8 分（满分是 10 分）。
 
@@ -37,7 +37,7 @@ int main()
 
 ---
 
-#### **Ⅱ、冒泡排序**
+### **Ⅱ、冒泡排序**
 
 **基本思想**：每次比较两个相邻的元素，如果它们的顺序错误就把它们交换。
 
@@ -108,7 +108,7 @@ int main()
 
 ---
 
-#### **Ⅲ、快速排序**
+### **Ⅲ、快速排序**
 
 **算法思路**：首先在这个序列中选择一个基准数temp，先从右往左找一个小于 temp的数，再从左往右找一个大于 temp 的数，然后交换它们。这里用两个变量 i 和 j代表两个哨兵，分别指向序列最左边和最右边。右边的哨兵j先出动，找到小于基准数的数之后停下，然后左边的哨兵i找到大于基准数的数之后停下，两两交换。直到两个哨兵碰头，再将基准数归位。接下来继续处理左边的，再继续处理右边的这是一个递归调用函数的过程。
 
@@ -168,7 +168,7 @@ int main()
 }
 ```
 
-##### **改编《明明的随机数》**
+##### **1、改编《明明的随机数》**
 
 小哼的学校要建立一个图书角，老师派小哼去找一些同学做调查，看看同学们都喜欢读哪些书。小哼让每个同学写出一个自己最想读的书的ISBN号（你知道吗？每本书都有唯一的ISBN号，不信话你去找本书翻到背面看看）。当然有一些好书会有很多同学都喜欢，这样就会收集到很多重复的ISBN号。小哼需要去掉其中重复的ISBN号，即每个ISBN号只保留一个，也就说同样的书只买一本（学校真是够抠门的）。然后再把这些ISBN号从小到大排序，小哼将按照排序好的ISBN号去书店去买书。请你协助小哼完成“去重”与“排序”的工作。
 
@@ -273,7 +273,7 @@ void quicksort(int left, int right)//快速排序函数
 
 ---
 
-### **二、队列(先进先出First In First Out ,FIFO)**
+## **二、队列(先进先出First In First Out ,FIFO)**
 
 **问题**：给定加密过的一串数(6 3 1 7 5 8 9 2 4)解密小哈的QQ号，规则：首先将第一个数删除，紧接着将第二个数放到这串数的末尾，再将第三个数删除并将第四个数放到这串数的末尾，再将第五个数删除……直到剩下最后一个数，将最后一个数也删除。按照删除的顺序，把删除的数连在一起就是小哈的QQ号了。
 
@@ -325,7 +325,7 @@ int main()
 
 ---
 
-### **三、栈(后进先出)**
+## **三、栈(后进先出)**
 
 **问题**：解密回文，回文字符串是指从左到右读和从右到左读完全相同的字符串。
 
@@ -447,7 +447,7 @@ int main()
 
 ---
 
-##### **小猫钓鱼**
+### Ⅰ、**小猫钓鱼**
 
 纸牌游戏---小猫钓鱼，游戏规则：将一副扑克牌平均分成两份，每人拿一份。小哼先拿出手中第一张牌放在桌面上，然后小哈也拿出手中的第一张牌，并放在小哼刚打出的牌的上面，两人交替出牌。出牌时，如果某人打出的牌与桌面上某张牌的牌面相同，即可将两张相同的牌及中间夹着的牌全部那走，并依次放在自己手中牌的末尾。当任意一人手中的牌全部出完时，游戏结束。假设小哼手中有6张牌顺序为：2	4	1	2	5	6，小哈手中的牌：3	1	3	5	6	4，且牌面只有1~9。
 
@@ -620,9 +620,9 @@ int main()
 
 ---
 
-### **四、链表**
+## **四、链表**
 
-##### **链表的创建，插入，删除，查找**
+### **Ⅱ、链表的创建，插入，删除，查找**
 
 ```java
 public class LinkedList<T>{
@@ -733,7 +733,9 @@ public class LinkedList<T>{
     }
 ```
 
-##### **插入数字**
+---
+
+### Ⅲ、**插入数字**
 
 已有一串从小到大排好序的数2	3	5	8	10	18	26	32。现需要往这串数中插入6使其得到的新序列仍符合从小到大排序。
 
@@ -846,23 +848,176 @@ int main()
 }
 ```
 
+---
+
+## **五、树**
+
+### Ⅰ、**树的定义**
+
+​	树是n(n>=0)个节点的有限集。当n=0时，成为空树。在任意一个非空树中，有以下特点。
+
+​	1、有且仅有一个特定的称为根的节点。
+
+​	2、当n>1时，其余节点可分为m(m>0)个互不相交的有限集，每个集合本身又是一个树，并称为根的子树。
+
+---
+
+### Ⅱ、**二叉树(Binary Tree)**
+
+#### **1、二叉树的定义**
+
+​	树的特殊形式。每个节点最多只能有2个孩子节点。一个被称为左孩子(left child)，一个被称为右孩子(right child)。
+
+#### **2、满二叉树**
+
+​	**一个二叉树的所有非叶子节点都存在左右孩子，并且所有叶子节点都在同一个层级上。**
+
+![](images/Snipaste_2022-08-14_13-53-19.png)
+
+#### **3、完全二叉树**
+
+​	 **对一个有n个节点的二叉树，按层级顺序编号，则所有节点的编号为从1到n。如果这个树所有节点和同样深度的满二叉树的编号为从一到n的节点位置相同，则这个二叉树为完全二叉树。**
+
+![](images/Snipaste_2022-08-14_13-24-19.png)
+
+#### 4、二叉树的链式存储
+
+```java
+public class TreeNode {
+    public int data;//数据
+    public TreeNode leftChild;//指向左孩子的左指针
+    public TreeNode rightChild;//指向右孩子的右指针
+    public TreeNode(){}
+    public TreeNode(int data){
+        this.data = data;
+    }
+}
+```
 
 
 
+![自《漫画算法》](images/Snipaste_2022-08-14_13-47-58.png)
 
+---
 
+### **Ⅲ、二叉树的遍历**
 
+#### **1、深度优化遍历**
 
+- **前序遍历（根左右）:**
 
+  在第一次遍历到节点时就执行操作，一般只是想遍历执行操作（或输出结果）可选用先序遍历。
 
+- **中序遍历（左根右）:**
 
+  对于二分搜索树，中序遍历的操作顺序（或输出结果顺序）是符合从小到大（或从大到小）顺序的，故要遍历输出排序好的结果需要使用中序遍历。
 
+- **后序遍历（左右根）:**
 
+  后续遍历的特点是执行操作时，肯定已经遍历过该节点的左右子节点，故适用于要进行破坏性操作的情况，比如删除所有节点。
 
+```java
+/*递归方式创建和遍历二叉树*/
+public class BinaryTree {
+    /**
+     * 创建二叉树
+     *
+     * @param inputList 输入列表
+     * @return {@link TreeNode}
+     */
+    public static TreeNode createBinaryTree(LinkedList<Integer> inputList){
+        TreeNode node = null;
+        if(inputList==null || inputList.isEmpty()){
+            return null;
+        }
+        Integer data = inputList.removeFirst();
+        if(data!=null){
+            node = new TreeNode(data);
+            node.leftChild = createBinaryTree(inputList);
+            node.rightChild = createBinaryTree(inputList);
+        }
+        return node;
+    }
 
+    /**
+     * 前序遍历
+     *
+     * @param node 节点
+     */
+    public static void preOrderTraversal(TreeNode node){
+        if(node == null){
+            return ;
+        }
+        System.out.println(node.data);
+        preOrderTraversal(node.leftChild);
+        preOrderTraversal(node.rightChild);
+    }
 
+    /**
+     * 中序遍历
+     *
+     * @param node 节点
+     */
+    public static void inOrderTraversal(TreeNode node){
+        if(node == null){
+            return ;
+        }
+        inOrderTraversal(node.leftChild);
+        System.out.println(node.data);
+        inOrderTraversal(node.rightChild);
+    }
 
+    /**
+     * 后序遍历
+     *
+     * @param node 节点
+     */
+    public static void postOrderTraversal(TreeNode node){
+        if(node == null){
+            return ;
+        }
+        postOrderTraversal(node.leftChild);
+        postOrderTraversal(node.rightChild);
+        System.out.println(node.data);
+    }
+    public static void main(String[] args){
+        LinkedList<Integer> inputList = new LinkedList<Integer>(Arrays.asList(new Integer[]{3,2,9,null,null,10,null,null,8,null,4}));
+        TreeNode treeNode = createBinaryTree(inputList);
+        System.out.println("前序遍历：");
+        preOrderTraversal(treeNode);
+        System.out.println("中序遍历：");
+        inOrderTraversal(treeNode);
+        System.out.println("后序遍历：");
+        postOrderTraversal(treeNode);
+    }
+}
+```
 
+#### **2、广度优化遍历**
+
+- 层序遍历：（从根节点到叶子节点**横向**逐层遍历各个节点）借助**队列**，出队顺序即树的遍历顺序。
+
+```java
+/**
+ * 层序遍历
+ *
+ * @param root 根
+ */
+  public static void levelOrderTraversal(TreeNode root){
+  	Queue<TreeNode> queue = new LinkedList<TreeNode>();
+    queue.offer(root);
+    while(!queue.isEmpty()){
+        TreeNode node = queue.poll();
+        System.out.println(node.data);
+        if(node.leftChild != null){
+            queue.offer(node.leftChild);
+        }
+        if(node.rightChild != null){
+            queue.offer(node.leftChild);
+        }
+    }
+}
+```
 
 
 
