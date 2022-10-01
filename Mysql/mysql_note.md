@@ -215,6 +215,10 @@ DEFAULT CURRENT_TIMESTAMP
 
 ON UPDATE CURRENT_TIMESTAMP
 表示每次更新这条数据的时候，该字段都会更新成当前时间
+
+on update cascade 级联更新
+on delete cascade 级联删除
+级联更新和级联删除需要设置在从表上,意思：更新主表时，外键表也会跟随一起更新或删除
 ```
 
 查看当前数据库中有哪些表
