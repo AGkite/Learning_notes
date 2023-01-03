@@ -17,6 +17,7 @@
     * [<strong>删</strong>](#删)
     * [<strong>改</strong>](#改)
     * [<strong>查</strong>](#查)
+      * [<strong>表结构的查看</strong>](#表结构的查看)
       * [<strong>单表查询</strong>](#单表查询)
         * [<strong>复合查询</strong>](#复合查询)
         * [<strong>带IN关键字的子查询</strong>](#带in关键字的子查询)
@@ -478,6 +479,16 @@ order by sorting_cloumns					   //如何对结果进行排序
 having secondary_constraint					   //查询时满足的第二条件
 limit count									   //限定输出的查询结果
 ```
+
+#### 表结构的查看
+
+同时查看表结构和注释（相当于desc+注释）
+
+```sql
+select COLUMN_NAME,COLUMN_TYPE,IS_NULLABLE,COLUMN_DEFAULT,EXTRA,COLUMN_COMMENT from information_schema.COLUMNS where TABLE_SCHEMA = '数据库名' and TABLE_NAME = '表名';
+```
+
+![](images/Snipaste_2023-01-03_21-19-50.png)
 
 #### **单表查询**
 
@@ -1074,6 +1085,12 @@ alter table 数据表名 add spatial index 索引名(字段);
 
 ```sql
 drop index index_name on table_name;
+```
+
+### **查看表中的索引信息**
+
+```sql
+show index from 数据表名\G;
 ```
 
 ---
