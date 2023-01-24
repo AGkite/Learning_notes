@@ -162,8 +162,38 @@ while(1<2)
     b = t; 
     if(t == 0)
     {
-        retur a;
-		break;
+        return a;
+    }
+}
+```
+
+java的实现:
+
+```java
+public static int gcd(int num1 , int num2){
+    //求两数的最大公约数
+    if(num1<num2){
+        int t = num1; num1 = num2; num2 = t;
+    }
+    while(true){
+        int temp = num1%num2;
+        num1 =num2;
+        num2 = temp;
+        if(temp==0){
+            return num1;
+        }
+    }
+}
+```
+
+```java
+public static int gcd(int num1 , int num2){
+    //使用BigInteger类的gcd()方法，求两数的最大公约数
+    BigInteger ans,a,b;
+    a = new BigInteger(""+num1);
+    b = new BigInteger(""+num2);
+    ans = a.gcd(b);
+    return ans.intValue();
     }
 }
 ```
