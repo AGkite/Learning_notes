@@ -170,6 +170,7 @@ public class UserDaoTest {
 ```
 
 > 可能出现问题：Maven静态资源过滤问题
+![](images/Snipaste_2023-01-28_18-20-59.png)
 
 ```xml
 <!--在build中配置resources,来防止资源导出失败的问题-->
