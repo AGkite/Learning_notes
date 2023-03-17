@@ -439,6 +439,69 @@ public E set(int index, E element)，设置指定位置的元素
 
 ---
 
+## 队列
+
+```java
+import java.util.Queue;
+import java.util.LinkedList;
+
+public class QueueExample {
+    public static void main(String[] args) {
+        Queue<String> queue = new LinkedList<>();
+        
+        // 入队
+        queue.offer("apple");
+        queue.offer("banana");
+        queue.offer("cherry");
+        
+        // 出队
+        String first = queue.poll();
+        System.out.println(first); // 输出"apple"
+        
+        // 查看队头元素
+        String head = queue.peek();
+        System.out.println(head); // 输出"banana"
+        
+        // 判断队列是否为空
+        boolean empty = queue.isEmpty();
+        System.out.println(empty); // 输出false
+        
+        // 获取队列长度
+        int size = queue.size();
+        System.out.println(size); // 输出2
+    }
+}
+```
+
+## 栈
+
+```java
+import java.util.Stack;
+
+public class StackExample {
+    public static void main(String[] args) {
+        Stack<String> stack = new Stack<>();
+
+        // 将元素推入栈
+        stack.push("Java");
+        stack.push("is");
+        stack.push("awesome!");
+
+        // 查看栈顶元素
+        System.out.println("Top element: " + stack.peek());//Top element: awesome!
+
+        // 弹出栈顶元素
+        stack.pop();	//awesome!
+
+        // 查看栈顶元素
+        System.out.println("Top element: " + stack.peek());//Top element: is
+
+        // 判断栈是否为空
+        System.out.println("Is stack empty? " + stack.isEmpty());//Is stack empty? false
+    }
+}
+```
+
 
 
 
