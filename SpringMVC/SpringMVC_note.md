@@ -445,3 +445,127 @@ Spring MVC 的 @RequestMapping 注解能够处理 HTTP 请求的方法, 比如 G
 @GetMapping 是一个组合注解，平时使用的会比较多！
 
 它所扮演的是 @RequestMapping(method =RequestMethod.GET) 的一个快捷方式。
+
+## 6、结果跳转方式
+
+### ModelAndView
+
+设置ModeAndView对象，根据view的名称，和视图解析器跳转到指定页面。
+
+页面：{视图解析器前缀} + viewName +{视图解析器后缀}
+
+```xml
+<!-- 视图解析器 -->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+     id="internalResourceViewResolver">
+   <!-- 前缀 -->
+   <property name="prefix" value="/WEB-INF/jsp/" />
+   <!-- 后缀 -->
+   <property name="suffix" value=".jsp" />
+</bean>
+```
+
+### ServletAPI
+
+通过设置ServletAPI，不需要视图解析器。
+
+1. 通过HttpServletResponse进行输出
+2. 通过HttpServletResponse进行重定向
+3. 通过HttpServletResponse实现转发
+
+```java
+@Controller
+public class ResultGo {
+    @RequestMapping("/result/t1")
+    public void test1(HttpServletRequest req,HttpServletResponse rsp) throws IOException {
+        rsp.getWriter().println("Hello,Spring BY servlet API");
+    }
+    @RequestMapping("/result/t2")
+    public void test1(HttpServletRequest req,HttpServletResponse rsp) throws IOException {
+        rsp.sendRedirect("/index,jsp");
+    }
+    @RequestMapping("/result/t3")
+    public void test1(HttpServletRequest req,HttpServletResponse rsp) throws IOException {
+        //转发
+        req.setAttribute("msg","/result/t3");
+        req.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(req,rsp);
+    }
+}
+```
+
+### SpringMVC
+
+**通过SpringMVC来实现转发和重定向-无需视图解析器。**
+
+将视图解析器注释掉
+
+```java
+@Controller
+public class ResultSpringMVC {
+    @RequestMapping("/rsm/t1")
+    public String test1(){
+        //转发
+        return "/index.jsp";
+    }
+    @RequestMapping("/rsm/t2")
+    public String test2(){
+        //转发
+        return "forward:/index.jsp";
+    }
+    @RequestMapping("/rsm/t3")
+    public String test3(){
+        //重定向
+        return "redirect:/index.jsp";
+    }
+}
+```
+
+## 数据显示到前端
+
+**第一种：通过ModelAndView**
+
+```java
+public class ControllerTest1 implements Controller {
+
+   public ModelAndView handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
+       //返回一个模型视图对象
+       ModelAndView mv = new ModelAndView();
+       mv.addObject("msg","ControllerTest1");
+       mv.setViewName("test");
+       return mv;
+  }
+}
+```
+
+**第二种：通过ModelMap**
+
+```java
+@RequestMapping("/hello")
+public String hello(@RequestParam("username") String name,ModelMap model){
+    //封装要显示到视图中的数据
+    //相当于req.setAttribute("name",name)
+    model.addAttribute("name",name)
+    System.out.println(name);
+    return "hello";
+}
+```
+
+**第三种：通过Model**
+
+```java
+@RequestMapping("/ct2/hello")
+public String hello(@RequestParam("username") String name, Model model){
+     //封装要显示到视图中的数据
+    //相当于req.setAttribute("name",name)
+    model.addAttribute("msg",name);
+    System.out.println(name);
+    return "test";
+```
+
+**对比**
+
+**Model** 只有寥寥几个方法只适合用于储存数据，简化了新手对于Model对象的操作和理解。
+
+**ModelMap** 继承了 LinkedMap ，除了实现了自身的一些方法，同样的继承 LinkedMap 的方法和特性。
+
+**ModelAndView** 可以在储存数据的同时，可以进行设置返回的逻辑视图，进行控制展示层的跳转。
