@@ -116,7 +116,7 @@ git show --raw c9f685ea9fa05d88fa9a0a44ed286f38995d2eb3
 
 ### **遇到的错误：**
 
-**一.**push前最好先pull避免发生如下冲突
+1. push前最好先pull避免发生如下冲突
 
 ```bash
 $ git push origin master
@@ -131,7 +131,9 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 ```
 解决办法：向远程仓库拉取代码pull，同步本地仓库。
 
-**二.**Git Warning: LF will be replaced by CRLF
+---
+
+2. Git Warning: LF will be replaced by CRLF
 
 <img src="images/Snipaste_2022-08-10_13-29-20.png" style="zoom:50%;" />
 
@@ -139,6 +141,19 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 
 ```bash
 git config --global core.autocrlf false
+```
+
+---
+
+3. 缓冲区过小
+
+![](images/Snipaste_2024-08-12_11-35-14.jpg)
+
+解决办法：
+
+```bash
+# 设置拉取缓冲区大小为 512（524288000） MB 或 1 GB（1048576000）
+git config http.postBuffer 524288000
 ```
 
 [GitHub官方文档:](https://docs.github.com/cn)
