@@ -48,8 +48,12 @@ ssh git@github.com
 设置Git的user name和email：
 
 ```bash
+# 全局设置
 git config --global user.name "*****"
 git config --global user.email "********@gmail.com"
+# 单个仓库设置
+git config user.name "*****"
+git config user.email "********@gmail.com"
 ```
 
 之后就可以克隆远程仓库到本地
