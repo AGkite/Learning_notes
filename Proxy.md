@@ -7,6 +7,9 @@ git config --global https.proxy http://127.0.0.1:7890
 Git 删除代理：
 git config --global --unset http.proxy
 git config --global --unset https.proxy
+Git 设置仅GitHub代理
+git config --global http.https://github.com.proxy http://127.0.0.1:7890
+git config --global https.https://github.com.proxy https://127.0.0.1:7890
 ------------------------------------------------------------------------------------------------
 Npm 添加代理：
 npm config set proxy="http://127.0.0.1:7890"

@@ -81,6 +81,12 @@ git commit -m "update"	//参数 -m 后输入提交描述
 git push origin master	//master是分支名称
 ```
 
+强制关联到远程分支（将创建本地release分支并关联上远程仓库的release）
+
+```bash
+git checkout -b release origin/release
+```
+
 ---
 
 ### Git工作原理
